@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  font-family: 'Poppins';
+  height: 100%;
+  background-color: white;
+}
+
+:root {
+  --animate-duration: 3s;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.phone-input input {
+  @apply bg-transparent mx-2 p-2 focus:outline-none rounded;
+}
+
+img[alt~='roulette-static'] {
+  position: absolute;
+  z-index: 5;
+  width: 16%;
+  top: 35px;
+  content: url('./assets/pointer.svg');
+  @apply transform rotate-45 right-5 md:right-9;
+}
+
+* {
+  transition: all 0.25s;
+}
+
+.transition_all {
+  transition: all 0.25s;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #d5d5d5 !important;
+  /* -webkit-box-shadow: 0 0 0px 1000px #2f4d64 inset; */
+  caret-color: #d1d5db;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
