@@ -1,48 +1,63 @@
-import React from 'react';
-import PhoneInput from 'react-phone-number-input/mobile';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
 
-import { UserActions } from '../../states/actions';
+import {BsTelephoneFill, BsEyeFill, BsEyeSlashFill} from 'react-icons/bs'
+import {HiLockClosed, HiUser} from 'react-icons/hi'
+import { FiSearch } from 'react-icons/fi';
 
-const InputBox = ({ onValueChange, value, inputType, placeholder, name }) => {
-  const dispatch = useDispatch();
 
-  const onCodeChange = code => {
-    dispatch(UserActions.updateUser({ code }));
-  };
+const InputBox = ({ onValueChange, value, inputType, placeholder, name, className }) => {
+  const [typex, setTypex] = useState('');
+
+  useEffect(() => {
+    setTypex(inputType);
+  }, [inputType]);
+
+  // const onCodeChange = code => {
+  //   dispatch(UserActions.updateUser({ code }));
+  // };
 
   return (
     <>
-      {inputType === 'tel' && (
-        <div className={`border border-primary pr-4 my-2 rounded-full max-w-2xl w-auto flex items-center z-10`}>
-          <PhoneInput
-            className='rounded-full focus:outline-none mr-2 ml-4 my-4 flex-1 bg-transparent phone-input min-w-0'
-            defaultCountry='NG'
-            onCountryChange={code => onCodeChange(code)}
-            name={name}
-            type={inputType}
-            placeholder={placeholder}
-            value={value}
-            onChange={onValueChange}
-            spellCheck={false}
-            required={true}
+        <div className={`px-4 my-2 ${inputType === 'search' ? 'rounded-xl' : 'rounded-3xl'} max-w-2xl w-full flex items-center z-10 ${className}`}>
+        {(name === 'name' || name === 'full_name') && (
+          <HiUser
+            className={`opacity-90 select-none flex-shrink-0 text-sm text-gray-400`}
           />
-        </div>
-      )}
-      {inputType !== 'tel' && (
-        <div className={`border pr-4 my-2 rounded-xl max-w-2xl w-full flex items-center z-10`}>
+        )}
+        {typex === 'search' && <FiSearch className={`opacity-90 select-none flex-shrink-0 text-sm text-gray-400`} />}
+        {typex === 'phone_number' && (
+          <BsTelephoneFill
+            className={`opacity-90 select-none flex-shrink-0 text-xs text-gray-400`}
+          />
+        )}
+        {(typex === 'password' || typex === 'textx') && (
+          <HiLockClosed
+            className={`opacity-90 select-none flex-shrink-0 text-xs text-gray-400`}
+          />
+        )}
           <input
             name={name}
             value={value}
-            type={inputType}
+            type={inputType === 'phone_number' ? 'number' : typex === 'textx' ? 'text' : inputType}
             onChange={onValueChange}
             className={`h-full focus:outline-none mr-2 ml-4 my-4 w-full bg-transparent`}
             placeholder={placeholder}
             required={true}
             spellCheck={false}
           />
+          {typex === 'password' && (
+              <BsEyeSlashFill
+                onClick={() => setTypex('textx')}
+                className={`cursor-pointer opacity-90 select-none flex-shrink-0 text-sm text-gray-400`}
+              />
+            )}
+            {typex === 'textx' && (
+              <BsEyeFill
+                onClick={() => setTypex('password')}
+                className={`cursor-pointer opacity-90 select-none flex-shrink-0 text-sm text-gray-400`}
+              />
+            )}
         </div>
-      )}
     </>
   );
 };

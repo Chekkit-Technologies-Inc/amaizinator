@@ -10,8 +10,8 @@ body,
   background-color: white;
 }
 
-:root {
-  --animate-duration: 3s;
+.curly {
+  font-family: 'Pangolin', cursive;
 }
 
 select {
@@ -23,18 +23,7 @@ select {
   @apply bg-transparent mx-2 p-2 focus:outline-none rounded;
 }
 
-img[alt~='roulette-static'] {
-  position: absolute;
-  z-index: 5;
-  width: 16%;
-  top: 35px;
-  content: url('./assets/pointer.svg');
-  @apply transform rotate-45 right-5 md:right-9;
-}
 
-* {
-  transition: all 0.25s;
-}
 
 .transition_all {
   transition: all 0.25s;
@@ -49,9 +38,6 @@ img[alt~='roulette-static'] {
   scrollbar-width: none;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
@@ -64,6 +50,15 @@ select:-webkit-autofill:focus {
   caret-color: #d1d5db;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #8CC53F !important;
+  /* -webkit-box-shadow: 0 0 0px 1000px #2f4d64 inset; */
+  caret-color: #d1d5db;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -72,4 +67,20 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.bg-field {
+  background-image: url('https://s3-alpha-sig.figma.com/img/5a00/fe2a/b994e160c61765441d7d5c952db1290c?Expires=1690156800&Signature=oKv1RqlDOFNQQyQI72soTCa1z0-NL~lVXn3zLA-ZVj0IuMx4QDO1HmTo8pOn6iFvgNWd7FaLSbQI3Jh70vnynSzlDmIq41WsR9x8mPiT2~We~sDeNVpgSnFZQkIioGy12Lg2c7WbfLcdxUnOBT20JeWtk09O0Fv5KzA2645MrRGSW6LVxaTgFlRGbpz7iqhaiUxCwcFX6hcfblTQQrEme2M63EvdX0z9LBo5uxJci3UBr-2DpL8IFk7OXQrC2oUDaRsX~-IOgWW4rzm~ZUlPGVa~3iAJORVtm7jk5e6pGyYyUZE6NhSkZvIt7jRcLgtWBCsZAWo1SUJyiVQv5Z1Kbg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-cloud {
+  background-color: #8CC53F;
+  background-image: url('./assets/cloud.svg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 20%;
 }
