@@ -27,7 +27,7 @@ const Dashboard = ({ className }) => {
             <b className='text-base'>0</b>
             <div className='text-sm font-medium'>Point</div>
           </div>
-          <Link to='/app/my-account' className='bg-yellow-100 text-blue-400 hover:text-blue-400 no-underline hover:no-underline capitalize p-2 rounded-lg w-8 h-8 flex justify-center items-center font-semibold cursor-pointer'>BA</Link>
+          <Link to='/app/my-account' className='bg-green_light text-white hover:text-white no-underline hover:no-underline capitalize p-2 rounded-lg w-10 h-10 flex justify-center items-center font-semibold cursor-pointer'>BA</Link>
         </div>
       </FadeIn>
       <div className='space-y-3'>

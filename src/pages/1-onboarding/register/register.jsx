@@ -98,7 +98,8 @@ const Register = ({ className }) => {
               </div>
         </FadeIn>
         <div className='flex justify-center'>
-          <Button type={'submit'} className={'w-full'} text={'Submit'} disabled={!canSubmit} />
+          {/* <Button type={'submit'} className={'w-full'} text={'Submit'} disabled={!canSubmit} /> */}
+          <Button onClick={() => history.push('/app/dashboard')} className={'w-full'} text={'Submit'} disabled={!canSubmit} />
         </div>
         <div className='text-center pt-6'>Already have an account? <Link to='/app/login' className='text-yellow_dark hover:text-yellow_dark underline font-semibold cursor-pointer'>Log in</Link></div>
       </form>

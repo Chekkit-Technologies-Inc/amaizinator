@@ -20,7 +20,7 @@ const MyAccount = ({ className }) => {
       <div className='font-bold text-lg mt-4'>My Acccount</div>
 
       <div className='flex flex-col flex-1 h-full'>
-        <div className='bg-yellow-100 text-blue-400 w-24 h-24 flex justify-center items-center rounded-full mx-auto relative top-8 text-2xl font-bold'>
+        <div className='bg-green_light text-white hover:text-white w-24 h-24 flex justify-center items-center rounded-full mx-auto relative top-8 text-2xl font-bold'>
           BA
         </div>
         <div className='bg-white flex-1 rounded-2xl text-gray-800 p-4 pt-10'>

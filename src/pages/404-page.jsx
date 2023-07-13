@@ -9,7 +9,7 @@ import Button from '../components/button';
 function NotFound() {
   const history = useHistory();
   return (
-    <div className={`flex flex-col justify-center items-center min-h-screen p-6`}>
+    <div className={`flex flex-col justify-center items-center min-h-screen p-6 bg-red-100`}>
       <FadeIn className={`max-w-2xl  space-y-6`}>
         <div className={`w-96 h-96 p-6`}>
           <ImageFadeIn className={`w-96`} src={LostInSpace} opacityTransition={1} />

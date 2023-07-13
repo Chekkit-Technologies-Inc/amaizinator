@@ -84,3 +84,10 @@ input[type='number'] {
   background-position: bottom right;
   background-size: 20%;
 }
+
+.bg-camera {
+  background-image: url('./assets/arrow-tl.svg'), url('./assets/arrow-br.svg') , url('./assets/arrow-tr.svg') , url('./assets/arrow-bl.svg');
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: top left, bottom right, top right, bottom left;
+  background-size: 5%;
+}

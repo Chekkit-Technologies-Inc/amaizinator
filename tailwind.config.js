@@ -33,6 +33,9 @@ module.exports = {
         pink_light: '#FCE9FC',
         cyan_dark: '#6CC9F0',
         cyan_light: '#E7F3FD',
+        red_third: '#F05B28',
+        blue_second: '#6CC9F0',
+        yellow_first: '#FEDB33',
       },
       height: {
         '90': '22rem',

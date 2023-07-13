@@ -1,9 +1,12 @@
 import React from 'react';
 import {MdOutlineKeyboardArrowDown} from 'react-icons/md'
 
+import {ReactComponent as CalIcon} from '../../assets/calendar.svg'
+
 const SelectBox = ({ name, value, options, onValueChange, placeholder, className }) => {
   return (
     <div className={`rounded-3xl focus:outline-none ${name === 'filter' ? 'p-2' : 'my-2 p-4'}  w-full max-w-2xl flex items-center space-x-2 z-10 ${className}`}>
+      {name === 'filter' && <CalIcon />}
       <select
       className='flex-1 focus:outline-none bg-transparent'
         spellCheck={false}

@@ -82,7 +82,8 @@ const Login = ({ className }) => {
           })}
       </FadeIn>
       <div className='flex justify-center'>
-        <Button type={'submit'} className={'w-full'} text={'Login'} disabled={!canSubmit} />
+        {/* <Button type={'submit'} className={'w-full'} text={'Login'} disabled={!canSubmit} /> */}
+        <Button onClick={() => history.push('/app/dashboard')} className={'w-full'} text={'Login'} disabled={!canSubmit} />
       </div>
       <div className='text-center pt-6'>Don't have an account? <Link to='/app/register' className='text-yellow_dark hover:text-yellow_dark underline font-semibold cursor-pointer'>Register</Link></div>
     </form>

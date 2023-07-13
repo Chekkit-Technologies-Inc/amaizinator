@@ -20,7 +20,7 @@ const MyWins = ({ className }) => {
       <FadeIn className='space-y-1'>
         <div className='flex items-center space-x-4 justify-between'>
           <div className='font-bold text-lg'>My Wins</div>
-          <div className='w-28 cursor-pointer'>
+          <div className='w-36 cursor-pointer'>
             <SelectBox
               className={`bg-yellow-100`}
               defaultValue={'This week'}
@@ -61,85 +61,7 @@ const MyWins = ({ className }) => {
             <div>+ 500</div>
           </div>
         </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
 
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
       </div>
     </FadeIn>
   );
