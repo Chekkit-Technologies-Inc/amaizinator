@@ -29,7 +29,7 @@ const Scanning = ({ className }) => {
 
           <div className='flex-1 flex justify-center items-center'>
             <div className='h-80 w-full m-10'>
-              <Camera ref={camera} mirrored={"true"} aspectRatio={1 / 1} />
+              <Camera ref={camera} mirrored={"true"} facingMode="environment" aspectRatio={1 / 1} />
               {/* <img src={image} alt='Taken'/> */}
             </div>
           </div>
