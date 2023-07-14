@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
-import ReactTextFormat from 'react-text-format';
+// import ReactTextFormat from 'react-text-format';
 
 import Button from '../button/button';
 
@@ -50,7 +50,7 @@ const AppDialog = ({ open, setOpen, callBack, variant }) => {
 
                     <FadeIn className='p-4 max-h-96 overflow-auto'>
                       <div className='text-lg font-semibold pb-6'>Terms & Conditions</div>
-                      <ReactTextFormat className='leading-6 tracking-wide text-sm'>
+                      <div className='leading-6 tracking-wide text-sm'>
                       1. General principles
 
 1.1. Flour Mills of Nigeria is strongly committed to respecting the rights of its clients/consumers and users, including their rights to privacy and data protection. As part of this commitment, Flour Mills fully complies with its requirements under the Nigeria Data Protection Regulation 2019 (the Regulation).
@@ -192,7 +192,7 @@ Scooters/Bicycle - 7 winners  (Next Top 7 Rank)
 
 (d) We reserve all rights to disqualify  a participant/entry with regards their noncompliance with  any of the terms and conditions listed above with or without any form notification to such participants.
 
-                      </ReactTextFormat>
+                      </div>
                       {/* <div className='leading-6 tracking-wide text-sm'>
                         Join Captain Amaizing, a smart, fun-loving character who is passionate about health and inspiring kids like you to become Amaizing! With the Power of 4 in the Amaizing Day Cereal as his superpower, Captain Amaizing is here to guide you on an exciting journey.
                       </div> */}
