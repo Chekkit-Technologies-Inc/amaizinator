@@ -1,17 +1,17 @@
-import { AUTHENTICATE, UPDATE_USER, SIGNOUT } from '../type';
+import { LOGIN, UPDATE_USER, LOGOUT } from '../type';
 
-const initialState = {code: 'NG'};
+const initialState = {};
 
 const userReducer = (user = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case AUTHENTICATE:
+    case LOGIN:
       return { ...payload };
     case UPDATE_USER:
       return { ...user, ...payload };
-    case SIGNOUT:
-      localStorage.removeItem('slug');
+    case LOGOUT:
+      localStorage.removeItem('user');
       return initialState;
     default:
       return user;

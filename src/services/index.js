@@ -1,4 +1,4 @@
 import UserService from './user-service';
-import RewardService from './rewards-service';
+import TriviaService from './trivia-service';
 
-export { UserService, RewardService };
+export { UserService, TriviaService };

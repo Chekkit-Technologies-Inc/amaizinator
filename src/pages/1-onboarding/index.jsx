@@ -62,7 +62,7 @@ const Index = () => {
     <>
       {response.loading && (
         <div className='flex justify-center p-4'>
-          <FiLoader className='animate-spin' size={16} />
+          <FiLoader className='animate-spin text-yellow_dark' size={16} />
         </div>
       )}
 

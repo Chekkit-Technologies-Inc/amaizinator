@@ -1,7 +1,9 @@
 import React from 'react';
 
-const TriviaPlayer = ({ className }) => {
+import useDocumentTitle from '../../../hooks/use-document-title';
 
+const TriviaPlayer = ({ className }) => {
+  useDocumentTitle('Trivia')
 
   return (
     <div className={`${className} `}>

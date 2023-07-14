@@ -9,9 +9,12 @@ import PointIcon from '../../../assets/point.svg'
 import Receipt from '../../../assets/receipt.svg'
 import {ReactComponent as ScanSign} from '../../../assets/scan-sign.svg'
 
-const ScanHistory = ({ className }) => {
+import useDocumentTitle from '../../../hooks/use-document-title';
+
+const ScanTracker = ({ className }) => {
   const history = useHistory()
   const [phrase, setPhrase] = useState('')
+  useDocumentTitle('Scan Tracker')
 
   return (
     <FadeIn className={`${className} flex-1 flex flex-col text-gray-800 space-y-6 p-4 pb-12`}>
@@ -21,7 +24,7 @@ const ScanHistory = ({ className }) => {
 
       <FadeIn className='flex items-center space-x-4 justify-between'>
         <div className='font-bold text-lg'>Scan Tracker</div>
-        <button onClick={() => history.push('/app/scanning')} className='flex items-center space-x-2 w-32 px-3 py-2 rounded-lg cursor-pointer text-white bg-green_light'>
+        <button onClick={() => history.push('/app/scan')} className='flex items-center space-x-2 w-32 px-3 py-2 rounded-lg cursor-pointer text-white bg-green_light'>
           <ScanSign className='' />
           <div>Scan New</div>
         </button>
@@ -78,4 +81,4 @@ const ScanHistory = ({ className }) => {
   );
 };
 
-export default ScanHistory;
+export default ScanTracker;

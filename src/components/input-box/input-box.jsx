@@ -19,7 +19,7 @@ const InputBox = ({ onValueChange, value, inputType, placeholder, name, classNam
 
   return (
     <>
-        <div className={`px-4 my-2 ${inputType === 'search' ? 'rounded-xl' : 'rounded-3xl'} max-w-2xl w-full flex items-center z-10 ${className} overflow-hidden`}>
+        <div className={`px-4 my-2 ${inputType === 'search' ? 'rounded-xl' : 'rounded-3xl'} max-w-2xl w-full flex items-center z-10 ${className} overflow-hidden font-semibold`}>
         {(name === 'name' || name === 'full_name') && (
           <HiUser
             className={`opacity-90 select-none flex-shrink-0 text-sm text-gray-400`}

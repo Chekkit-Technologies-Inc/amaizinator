@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SelectBox from '../../../components/select-box'
 import PointCard from '../../../components/point-card/point-card';
@@ -8,9 +9,47 @@ import PointCard from '../../../components/point-card/point-card';
 import PointIcon from '../../../assets/point.svg'
 import Bambi from '../../../assets/bambi.svg'
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
+import {getTodayDate, getWeeklyStartDate, getAllTimeStartDate} from '../../../util'
+
+import {TriviaActions} from '../../../states/actions'
+
 const MyWins = ({ className }) => {
   const history = useHistory()
-  const [filter,setFilter] = useState('This Week')
+  const dispatch = useDispatch()
+  const {winnings} = useSelector(state => state.trivia)
+  const [filter,setFilter] = useState('Weekly')
+  const [dateRange, setDateRange] = useState({
+    from: '',
+    to: ''
+  })
+
+  useDocumentTitle('My Wins')
+
+  useEffect(() => {
+    if (filter === 'Daily') {
+      setDateRange({from: getTodayDate(), to: getTodayDate()})
+    }
+    if (filter === 'Weekly') {
+      setDateRange({from: getWeeklyStartDate(), to: getTodayDate()})
+    }
+    if (filter === 'All Time') {
+      setDateRange({from: getAllTimeStartDate(), to: getTodayDate()})
+    }
+  }, [filter])
+
+  useEffect(() => {
+    if (dateRange.from && dateRange.to) {
+      dispatch(TriviaActions.fetchWinnings(dateRange.from, dateRange.to))
+    }
+    // eslint-disable-next-line
+  }, [dateRange])
+
+  useEffect(() => {
+    console.log('winnings', winnings)
+    // eslint-disable-next-line
+  }, [winnings])
 
   return (
     <FadeIn className={`${className} flex-1 flex flex-col text-gray-800 space-y-6 p-4 pb-12`}>
@@ -23,11 +62,11 @@ const MyWins = ({ className }) => {
           <div className='w-36 cursor-pointer'>
             <SelectBox
               className={`bg-yellow-100`}
-              defaultValue={'This week'}
+              defaultValue={'Weekly'}
               onValueChange={e => setFilter(e.target.value)}
               value={filter}
               name={'filter'}
-              options={['This Week', 'All Time']}
+              options={['Daily', 'Weekly', 'All Time']}
             />
           </div>
         </div>

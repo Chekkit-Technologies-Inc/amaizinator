@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SelectBox from '../../../components/select-box'
 
@@ -14,9 +15,48 @@ import FirstCrown from '../../../assets/crown-1.svg'
 import FirstCup from '../../../assets/cup-1.svg'
 import FirstWing from '../../../assets/wings-1.svg'
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
+import {getTodayDate, getWeeklyStartDate, getAllTimeStartDate} from '../../../util'
+
+import {TriviaActions} from '../../../states/actions'
+
 const Leaderboard = ({ className }) => {
   const history = useHistory()
-  const [filter,setFilter] = useState('This Week')
+  const dispatch = useDispatch()
+  const {leaderboard} = useSelector(state => state.trivia)
+  const [filter,setFilter] = useState('Weekly')
+  const [dateRange, setDateRange] = useState({
+    from: '',
+    to: ''
+  })
+
+  useDocumentTitle('Leaderboard')
+
+  useEffect(() => {
+    if (filter === 'Daily') {
+      setDateRange({from: getTodayDate(), to: getTodayDate()})
+    }
+    if (filter === 'Weekly') {
+      setDateRange({from: getWeeklyStartDate(), to: getTodayDate()})
+    }
+    if (filter === 'All Time') {
+      setDateRange({from: getAllTimeStartDate(), to: getTodayDate()})
+    }
+  }, [filter])
+
+  useEffect(() => {
+    if (dateRange.from && dateRange.to) {
+      dispatch(TriviaActions.fetchLeaderboard(dateRange.from, dateRange.to))
+    }
+    // eslint-disable-next-line
+  }, [dateRange])
+
+  useEffect(() => {
+    console.log('leaderboard', leaderboard)
+    // eslint-disable-next-line
+  }, [leaderboard])
+
 
   return (
     <div className={`${className} flex-1 flex flex-col text-gray-800 space-y-6`}>
@@ -29,11 +69,11 @@ const Leaderboard = ({ className }) => {
         <div className='w-36 cursor-pointer'>
           <SelectBox
             className={`bg-yellow-100`}
-            defaultValue={'This week'}
+            defaultValue={'Weekly'}
             onValueChange={e => setFilter(e.target.value)}
             value={filter}
             name={'filter'}
-            options={['This Week', 'All Time']}
+            options={['Daily','Weekly', 'All Time']}
           />
         </div>
       </div>

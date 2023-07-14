@@ -1,6 +1,7 @@
 import React from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom';
+import { useSelector } from 'react-redux';
 
 import UserIcon from '../../../assets/user-white.svg'
 import KeyIcon from '../../../assets/key-white.svg'
@@ -9,8 +10,14 @@ import OnSwitch from '../../../assets/on-switch.svg'
 
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
+import { getInitials } from '../../../util';
+
+import useDocumentTitle from '../../../hooks/use-document-title';
+
 const MyAccount = ({ className }) => {
   const history = useHistory()
+  const user = useSelector(state => state.user)
+  useDocumentTitle('My Account')
 
   return (
     <div className={`${className} flex-1 flex flex-col text-white  p-4 pb-6`}>
@@ -22,10 +29,10 @@ const MyAccount = ({ className }) => {
 
       <div className='flex flex-col flex-1 h-full'>
         <div className='bg-green_light text-white hover:text-white w-24 h-24 flex justify-center items-center rounded-full mx-auto relative top-8 text-2xl font-bold'>
-          BA
+          {getInitials(`${user?.first_name} ${user?.last_name}`)}
         </div>
         <div className='bg-white flex-1 rounded-2xl text-gray-800 p-4 pt-10'>
-          <div className='font-bold text-lg text-center'>Barbie Ghost</div>
+          <div className='font-bold text-lg text-center capitalize'>{`${user?.first_name} ${user?.last_name}`}</div>
 
           <FadeIn className='space-y-4 mt-6'>
             <Link to='/app/update-profile' className='no-underline hover:no-underline flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>

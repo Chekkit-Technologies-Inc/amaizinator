@@ -14,9 +14,12 @@ import RewardIpad from '../../../assets/reward-ipad.svg'
 import RewardScholarship from '../../../assets/reward-scholarship.svg'
 import RewardBycicle from '../../../assets/reward-bycicle.svg'
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
 
 const Prizes = ({ className }) => {
   const history = useHistory()
+  useDocumentTitle('Prizes')
 
   return (
     <div className={`${className} flex-1 p-4 flex flex-col text-white`}>
@@ -98,7 +101,7 @@ const Prizes = ({ className }) => {
 
 
       </FadeIn>
-      <div className='w-80 mx-auto fixed bottom-0 right-0 left-0 p-6'><Button onClick={() => history.push('/app/register')} className={'text-xl font-semibold'} text={'Yay! let’s go'} /></div>
+      <div className='w-80 mx-auto fixed bottom-0 right-0 left-0 p-6'><Button onClick={() => history.push('/app/login')} className={'text-xl font-semibold'} text={'Yay! let’s go'} /></div>
     </div>
   );
 };

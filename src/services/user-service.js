@@ -1,17 +1,17 @@
-import http from '../http';
+import {httpAuth as http} from '../http';
 
-export const authenticate = async data => {
-  return http().post('/spin-wheel/user', data);
+export const register = async data => {
+  return http().post('/create-amazinator', data);
 };
 
-export const requestOtp = async (campaignSlug, phoneNumber, countryCode) => {
-  let data = {campaign_slug:campaignSlug, phone_number: phoneNumber, country_code: countryCode}
-  return http().post(`/spin-wheel-otp`, data);
+export const login = async data => {
+  return http().post('/app-signin', data);
 };
+
 
 const UserService = {
-  authenticate,
-  requestOtp,
+  register,
+  login,
 };
 
 export default UserService;

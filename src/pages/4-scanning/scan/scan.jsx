@@ -7,10 +7,13 @@ import {ReactComponent as ScanSign} from '../../../assets/scan-sign.svg'
 import PointCard from '../../../components/point-card/point-card';
 import Button from '../../../components/button/button';
 
-const Scanning = ({ className }) => {
+import useDocumentTitle from '../../../hooks/use-document-title';
+
+const Scan = ({ className }) => {
   const history = useHistory()
   const camera = useRef(null);
   const [image, setImage] = useState(null);
+  useDocumentTitle('Scan')
 
   useEffect(() => {
     console.log('image', image)
@@ -18,7 +21,7 @@ const Scanning = ({ className }) => {
 
   return (
     <Switch>
-      <Route exact path='/app/scanning'>
+      <Route exact path='/app/scan'>
         <div className={`${className} flex-1 flex flex-col text-gray-800 bg-green-50`}>
 
           <FadeIn className='p-4 bg-white space-y-4'>
@@ -65,7 +68,7 @@ const Scanning = ({ className }) => {
           <FadeIn className='p-4 border-t-8 border-gray-100 space-y-4'>
             <div className='flex items-center space-x-4 justify-between'>
               <div className='font-semibold text-base text-gray-300'>Bill Details</div>
-              <div onClick={() => history.push('/app/scanning')} className='flex items-center space-x-2 cursor-pointer text-green_light font-medium text-xs'>
+              <div onClick={() => history.push('/app/scan')} className='flex items-center space-x-2 cursor-pointer text-green_light font-medium text-xs'>
                 <ScanSign className='' />
                 <div>Scan New</div>
               </div>
@@ -112,4 +115,4 @@ const Scanning = ({ className }) => {
   );
 };
 
-export default Scanning;
+export default Scan;

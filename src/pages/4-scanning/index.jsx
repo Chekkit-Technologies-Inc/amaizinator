@@ -1,31 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { Route, Switch, Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FiLoader } from 'react-icons/fi';
 
-import ScanHistory from './scan-history';
-import Scanning from './scanning';
+import ScanTracker from './scan-tracker';
+import Scan from './scan';
 
 const routes = [
   {
-    name: 'ScanHistory',
-    path: '/app/scan-history',
-    component: ScanHistory,
+    name: 'ScanTracker',
+    path: '/app/scan-tracker',
+    component: ScanTracker,
     current: false,
   },
   {
-    name: 'Scanning',
-    path: ['/app/scanning', '/app/scan-result/:id'],
-    component: Scanning,
+    name: 'Scan',
+    path: ['/app/scan', '/app/scan-result/:id'],
+    component: Scan,
     current: false,
   }
 ];
 
 const Index = () => {
+  const history = useHistory()
   const response = useSelector(state => state.response);
   const location = useLocation();
   const [items, setItems] = useState(routes);
-  // const user = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
+
+  useLayoutEffect(() => {
+    if (!user?.token) {
+      history.push('/app/login');
+    }
+    // eslint-disable-next-line
+  }, [user]);
 
   useEffect(() => {
     let arr = location.pathname.split('/');
@@ -48,7 +56,7 @@ const Index = () => {
     <>
       {response.loading && (
         <div className='flex justify-center p-4'>
-          <FiLoader className='animate-spin' size={16} />
+          <FiLoader className='animate-spin text-yellow_dark' size={16} />
         </div>
       )}
 

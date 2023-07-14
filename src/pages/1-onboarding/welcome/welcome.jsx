@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import FadeIn from 'react-fade-in/lib/FadeIn';
+import { useSelector } from 'react-redux';
 import NinjaOne from '../../../assets/ninja-1.svg'
 import NinjaTwo from '../../../assets/ninja-2.svg'
 import NinjaThree from '../../../assets/ninja-3.svg'
@@ -11,8 +12,22 @@ import CurlyArrow from '../../../assets/curly-arrow.svg'
 
 import Button from '../../../components/button/button';
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
 const Welcome = ({ className }) => {
   const history = useHistory()
+  const user = useSelector(state => state.user)
+  useDocumentTitle('Welcome')
+
+  useEffect(() => {
+    if (user?.token) {
+      localStorage.setItem('user', JSON.stringify(user));
+      history.push('/app/dashboard');
+    } else {
+      localStorage.removeItem('user');
+    }
+    // eslint-disable-next-line
+  }, [user]);
 
   return (
     <div className={`${className} flex-1 p-4 flex flex-col justify-end`}>

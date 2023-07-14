@@ -1,15 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Bambi from '../../../assets/bambi.svg'
+import { useSelector } from 'react-redux';
 
 import {IoClose} from 'react-icons/io5'
 
 import InputBox from '../../../components/input-box/input-box';
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
 const AllGames = ({ className }) => {
   const history = useHistory()
   const [phrase, setPhrase] = useState('')
+  const {triviaList} = useSelector(state => state.trivia)
+  useDocumentTitle('All Games')
+
+  useEffect(() => {
+    console.log('triviaList', triviaList)
+    // eslint-disable-next-line
+  }, [triviaList])
 
   return (
     <div className={`${className} flex-1 flex flex-col text-white space-y-6 p-4 pt-6 pb-12`}>

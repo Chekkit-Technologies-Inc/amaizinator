@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import response from './response';
 import user from './user';
-import rewards from './rewards';
+import trivia from './trivia';
 
 export default combineReducers({
   response,
   user,
-  rewards,
+  trivia,
 });

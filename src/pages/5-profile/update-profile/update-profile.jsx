@@ -1,24 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useSelector } from 'react-redux';
 
 import InputBox from '../../../components/input-box/input-box';
 import SelectBox from '../../../components/select-box/select-box';
 import Button from '../../../components/button/button';
 
-import { states } from '../../../util';
+import useDocumentTitle from '../../../hooks/use-document-title';
+
+// import { states } from '../../../util';
 
 const form = {
-  name: '',
+  full_name: '',
   phone_number: '',
-  age_range: { options: ['Select Options', '18 - 24', '25 - 35', '36 - 45', '50 - above'] },
-  location: { options: states },
+  date_of_birth: '',
+  // location: { options: states },
 };
 
 const UpdateProfile = ({ className }) => {
   const history = useHistory()
   const [userDetail, setUserDetail] = useState(form);
   const [canSubmit, setCanSubmit] = useState(false);
+  const user = useSelector(state => state.user)
+  useDocumentTitle('Update Profile')
+
+  useEffect(() => {
+    if (user?.id) {
+      let data = {
+        full_name: `${user?.first_name} ${user?.last_name}`,
+        phone_number: `0${user?.phone_number}`,
+        date_of_birth: user?.date_of_birth ? user?.date_of_birth : user?.age_range
+      }
+      setUserDetail(data)
+    }
+  }, [user])
 
   useEffect(() => {
     if (form && userDetail) {
@@ -31,7 +47,7 @@ const UpdateProfile = ({ className }) => {
 
   const processField = field => {
     return field
-      .replace('_', ' ')
+      .replaceAll('_', ' ')
       .split(' ')
       .map(element => {
         return element.charAt(0).toUpperCase() + element.substring(1).toLowerCase();
@@ -44,10 +60,14 @@ const UpdateProfile = ({ className }) => {
     setUserDetail({ ...userDetail, [name]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
 
   return (
     <>
-      <form className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
+      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
         <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
           &larr;
         </div>

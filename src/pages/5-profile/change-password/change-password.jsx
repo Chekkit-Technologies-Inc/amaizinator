@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import InputBox from '../../../components/input-box/input-box';
 import Button from '../../../components/button/button';
 
+import useDocumentTitle from '../../../hooks/use-document-title';
+
 const form = {
   old_password: '',
   new_password: '',
@@ -14,6 +16,8 @@ const ChangePassword = ({ className }) => {
   const history = useHistory()
   const [userDetail, setUserDetail] = useState(form);
   const [canSubmit, setCanSubmit] = useState(false);
+
+  useDocumentTitle('Change Password')
 
   useEffect(() => {
     if (form && userDetail) {
@@ -26,7 +30,7 @@ const ChangePassword = ({ className }) => {
 
   const processField = field => {
     return field
-      .replace('_', ' ')
+      .replaceAll('_', ' ')
       .split(' ')
       .map(element => {
         return element.charAt(0).toUpperCase() + element.substring(1).toLowerCase();
@@ -39,10 +43,14 @@ const ChangePassword = ({ className }) => {
     setUserDetail({ ...userDetail, [name]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
 
   return (
     <>
-      <form className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
+      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
         <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
           &larr;
         </div>
