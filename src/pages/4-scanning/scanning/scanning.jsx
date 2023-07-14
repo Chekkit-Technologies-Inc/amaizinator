@@ -21,8 +21,8 @@ const Scanning = ({ className }) => {
       <Route exact path='/app/scanning'>
         <div className={`${className} flex-1 flex flex-col text-gray-800 bg-green-50`}>
 
-          <FadeIn className='p-4 py-8 bg-white space-y-4'>
-            <div className='font-semibold text-lg cursor-pointer px-4 pt-4' onClick={() => history.goBack()}>
+          <FadeIn className='p-4 bg-white space-y-4'>
+            <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
               &larr;
             </div>
             <div className="text-center">Please scan receipts that contains flour mills products</div>
@@ -58,7 +58,7 @@ const Scanning = ({ className }) => {
           </div>
 
           <FadeIn className='flex items-center space-x-4 justify-between px-4'>
-            <div className='font-bold text-lg'>Scan Tracker</div>
+            <div className='font-bold text-lg'>Scan Result</div>
           </FadeIn>
 
 

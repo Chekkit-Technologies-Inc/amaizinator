@@ -105,8 +105,8 @@ const Register = ({ className }) => {
         </div>
         <div className='text-center pt-6'>Already have an account? <Link to='/app/login' className='text-yellow_dark hover:text-yellow_dark underline font-semibold cursor-pointer'>Log in</Link></div>
       </form>
-      {open && <Dialog open={open} setOpen={setOpen} variant={'terms'} callBack={(accepted) => {
-        if (accepted) onAcceptChange(accepted)
+      {open && <Dialog open={open} setOpen={setOpen} variant={'terms'} callBack={() => {
+        onAcceptChange(true)
       }} />}
     </>
   );

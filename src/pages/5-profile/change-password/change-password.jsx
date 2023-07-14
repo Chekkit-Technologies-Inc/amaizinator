@@ -46,7 +46,7 @@ const ChangePassword = ({ className }) => {
         <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
           &larr;
         </div>
-        <div className='font-bold text-lg mt-4'>Change Password</div>
+        <div className='font-bold text-lg mt-4'>Password Setting</div>
         <FadeIn className='space-y-6 my-4'>
           {form &&
             Object.keys(form).map(field => {
