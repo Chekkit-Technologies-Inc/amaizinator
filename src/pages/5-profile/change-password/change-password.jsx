@@ -68,7 +68,7 @@ const ChangePassword = ({ className }) => {
             })}
         </FadeIn>
         <div className='flex justify-center'>
-          <Button type={'submit'} className={'w-full'} text={'Chnage Password'} disabled={!canSubmit} />
+          <Button type={'submit'} className={'w-full'} text={'Change Password'} disabled={!canSubmit} />
         </div>
       </form>
     </>

@@ -5,6 +5,7 @@ import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom';
 import UserIcon from '../../../assets/user-white.svg'
 import KeyIcon from '../../../assets/key-white.svg'
 import BellIcon from '../../../assets/bell-white.svg'
+import OnSwitch from '../../../assets/on-switch.svg'
 
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
@@ -17,7 +18,7 @@ const MyAccount = ({ className }) => {
         &larr;
       </div>
 
-      <div className='font-bold text-lg mt-4'>My Acccount</div>
+      <div className='font-bold text-lg mt-4'>My Account</div>
 
       <div className='flex flex-col flex-1 h-full'>
         <div className='bg-green_light text-white hover:text-white w-24 h-24 flex justify-center items-center rounded-full mx-auto relative top-8 text-2xl font-bold'>
@@ -62,7 +63,7 @@ const MyAccount = ({ className }) => {
                   <div style={{fontSize: '10px'}} className='text-gray-700 hover:text-gray-700'>Turn on and off notification</div>
                 </div>
               </div>
-              <MdOutlineKeyboardArrowRight size={20} className='text-gray-400 hover:text-gray-400' />
+              <img className='h-4 cursor-pointer' src={OnSwitch} alt="" />
             </div>
           </FadeIn>
         </div>

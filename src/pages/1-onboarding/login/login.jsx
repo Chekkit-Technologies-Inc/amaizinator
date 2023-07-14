@@ -27,7 +27,7 @@ const Login = ({ className }) => {
 
   const processField = field => {
     return field
-      .replace('_', ' ')
+      .replaceAll('_', ' ')
       .split(' ')
       .map(element => {
         return element.charAt(0).toUpperCase() + element.substring(1).toLowerCase();

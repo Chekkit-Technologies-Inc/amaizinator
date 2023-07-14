@@ -6,11 +6,13 @@ import InputBox from '../../../components/input-box/input-box';
 import SelectBox from '../../../components/select-box/select-box';
 import Button from '../../../components/button/button';
 
+import { states } from '../../../util';
+
 const form = {
   name: '',
   phone_number: '',
   age_range: { options: ['Select Options', '18 - 24', '25 - 35', '36 - 45', '50 - above'] },
-  location: { options: ['Select State', '18 - 24', '25 - 35', '36 - 45', '50 - above'] },
+  location: { options: states },
 };
 
 const UpdateProfile = ({ className }) => {
@@ -74,7 +76,7 @@ const UpdateProfile = ({ className }) => {
                     <InputBox
                       className={`bg-yellow-50 text-green_light`}
                       placeholder={processField(field)}
-                      inputType={field === 'phone_number' ? `phone_number` : `text`}
+                      inputType={field === 'phone_number' ? `phone_number` : field === 'date_of_birth' ? 'date' : `text`}
                       onValueChange={handleInputChange}
                       value={userDetail[field]}
                       name={field}

@@ -91,3 +91,16 @@ input[type='number'] {
   background-position: top left, bottom right, top right, bottom left;
   background-size: 5%;
 }
+
+.rs-carousel {
+  height: 360px !important;
+  position: relative !important;
+  top: 35px !important;
+  background: transparent !important;
+}
+
+.rs-theme-light, :root {
+  --rs-carousel-bg: transparent !important;
+  --rs-carousel-indicator : rgba(240, 91, 40, 0.30) !important;
+  --rs-carousel-indicator-active : #F05B28 !important;
+}

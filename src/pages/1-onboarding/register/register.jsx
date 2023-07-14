@@ -7,11 +7,13 @@ import SelectBox from '../../../components/select-box/select-box';
 import Button from '../../../components/button/button';
 import Dialog from '../../../components/dialog/dialog';
 
+import { states } from '../../../util';
+
 const form = {
   name: '',
   phone_number: '',
   age_range: { options: ['Select Options', '18 - 24', '25 - 35', '36 - 45', '50 - above'] },
-  location: { options: ['Select State', '18 - 24', '25 - 35', '36 - 45', '50 - above'] },
+  location: { options: states },
   password: '',
 };
 
@@ -33,7 +35,7 @@ const Register = ({ className }) => {
 
   const processField = field => {
     return field
-      .replace('_', ' ')
+      .replaceAll('_', ' ')
       .split(' ')
       .map(element => {
         return element.charAt(0).toUpperCase() + element.substring(1).toLowerCase();
@@ -78,7 +80,7 @@ const Register = ({ className }) => {
                     <InputBox
                       className={`bg-white text-green_light`}
                       placeholder={processField(field)}
-                      inputType={field === 'phone_number' ? `phone_number` : field === 'password' ? `password` : `text`}
+                      inputType={field === 'phone_number' ? `phone_number` : field === 'password' ? `password` : field === 'date_of_birth' ? 'date' : `text`}
                       onValueChange={handleInputChange}
                       value={userDetail[field]}
                       name={field}
