@@ -8,6 +8,14 @@ export const login = async data => {
   return http().post('/app-signin', data);
 };
 
+export const updateProfile = async data => {
+  return http().put('/app-signin', data);
+};
+
+export const changePassword = async data => {
+  return http().put('/app-signin', data);
+};
+
 export const retrieveUserDetials = async () => {
   return httpNormal().get('/amazing-day-campaign/profile');
 };
@@ -16,6 +24,8 @@ export const retrieveUserDetials = async () => {
 const UserService = {
   register,
   login,
+  updateProfile,
+  changePassword,
   retrieveUserDetials
 };
 

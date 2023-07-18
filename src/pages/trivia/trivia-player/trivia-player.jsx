@@ -50,10 +50,6 @@ const TriviaPlayer = ({ className }) => {
   }
 
   useEffect(() => {
-    console.log('question', question)
-  }, [question])
-
-  useEffect(() => {
     if (triviaList) {
       // eslint-disable-next-line
       let t = triviaList.find(d => d.slug == slug);

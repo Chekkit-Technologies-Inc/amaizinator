@@ -25,11 +25,6 @@ const AllGames = ({ className }) => {
     // eslint-disable-next-line
   }, [])
 
-  useEffect(() => {
-    console.log('triviaList', triviaList)
-    // eslint-disable-next-line
-  }, [triviaList])
-
   return (
     <div className={`${className} flex-1 flex flex-col text-white space-y-6 p-4 pt-6 pb-12`}>
       <div className='font-semibold text-lg cursor-pointer bg-white bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center' onClick={() => history.push('/app/dashboard')}>

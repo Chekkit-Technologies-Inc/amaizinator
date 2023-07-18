@@ -12,13 +12,14 @@ import { UserActions, ResponseActions } from '../../../states/actions';
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
-// import { states } from '../../../util';
+import { states } from '../../../util';
 
 const form = {
   full_name: '',
   phone_number: '',
   date_of_birth: '',
   password: '',
+  location: { options: states }
 };
 
 const Register = ({ className }) => {

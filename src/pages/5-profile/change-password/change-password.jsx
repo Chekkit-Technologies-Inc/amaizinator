@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import InputBox from '../../../components/input-box/input-box';
 import Button from '../../../components/button/button';
 
 import useDocumentTitle from '../../../hooks/use-document-title';
+
+import { UserActions, ResponseActions } from '../../../states/actions';
 
 const form = {
   old_password: '',
@@ -14,6 +17,7 @@ const form = {
 
 const ChangePassword = ({ className }) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [userDetail, setUserDetail] = useState(form);
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -45,6 +49,11 @@ const ChangePassword = ({ className }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (userDetail.old_password === userDetail.new_password) {
+      dispatch(ResponseActions.notify({ title: "", message: 'Old password is the same as new password', type: 'error', loading: false }));
+      return
+    }
+    dispatch(UserActions.changePassword(userDetail))
   }
 
 

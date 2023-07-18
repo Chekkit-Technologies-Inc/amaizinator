@@ -47,11 +47,45 @@ export const fetchUserDetials = () => async dispatch => {
 
     dispatch(notify({ loading: false }));
 
-    dispatch(updateUser({points: res?.data?.data?.points}))
+    dispatch(updateUser({...res?.data?.data?.user ,points: res?.data?.data?.points}))
     return Promise.resolve(res?.data?.data);
   } catch (err) {
     dispatch(notify({ loading: false }));
 
+    return Promise.reject(err);
+  }
+};
+
+export const updateProfile = (data) => async dispatch => {
+
+  dispatch(loading({ loading: true }));
+
+  try {
+    const res = await UserService.updateProfile(data);
+
+    dispatch(notify({ title: "", message: 'Profile updated!', type: 'success', loading: false }));
+
+    dispatch(fetchUserDetials())
+    return Promise.resolve(res?.data?.data);
+  } catch (err) {
+    dispatch(notify({ title: "", message: err.response?.data?.message || err.message, type: 'error', loading: false }));
+    return Promise.reject(err);
+  }
+};
+
+export const changePassword = (data) => async dispatch => {
+
+  dispatch(loading({ loading: true }));
+
+  try {
+    const res = await UserService.changePassword(data);
+
+    dispatch(notify({ title: "", message: 'Password updated!', type: 'success', loading: false }));
+
+    dispatch(logout())
+    return Promise.resolve(res?.data?.data);
+  } catch (err) {
+    dispatch(notify({ title: "", message: err.response?.data?.message || err.message, type: 'error', loading: false }));
     return Promise.reject(err);
   }
 };
@@ -74,6 +108,8 @@ const UserActions = {
   login,
   register,
   fetchUserDetials,
+  updateProfile,
+  changePassword,
   updateUser,
   logout,
 };

@@ -47,11 +47,6 @@ const MyWins = ({ className }) => {
     // eslint-disable-next-line
   }, [dateRange])
 
-  useEffect(() => {
-    console.log('winnings', winnings)
-    // eslint-disable-next-line
-  }, [winnings])
-
   return (
     <FadeIn className={`${className} flex-1 flex flex-col text-gray-800 space-y-6 p-4 pb-12`}>
       <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>

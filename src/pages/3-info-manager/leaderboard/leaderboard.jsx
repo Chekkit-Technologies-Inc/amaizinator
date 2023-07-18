@@ -53,11 +53,6 @@ const Leaderboard = ({ className }) => {
     // eslint-disable-next-line
   }, [dateRange])
 
-  useEffect(() => {
-    console.log('leaderboard', leaderboard)
-    // eslint-disable-next-line
-  }, [leaderboard])
-
 
   return (
     <div className={`${className} flex-1 flex flex-col text-gray-800 space-y-6`}>

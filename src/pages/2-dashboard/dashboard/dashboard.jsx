@@ -37,11 +37,6 @@ const Dashboard = ({ className }) => {
     // eslint-disable-next-line
   }, [])
 
-  useEffect(() => {
-    console.log('triviaList', triviaList)
-    // eslint-disable-next-line
-  }, [triviaList])
-
   return (
     <div className={`${className} flex-1 flex flex-col text-white space-y-6 pt-6 pb-12`}>
       <FadeIn className='px-4 space-y-4'>

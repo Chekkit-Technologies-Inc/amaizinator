@@ -24,17 +24,11 @@ const Scan = ({ className }) => {
   useDocumentTitle('Scan')
 
   useEffect(() => {
-    console.log('unique_code', unique_code)
-    console.log('points', points)
-  }, [unique_code, points])
-
-  useEffect(() => {
     setImage(null)
   }, [location])
 
   const scanImage = () => {
     dispatch(ScanActions.scanReceipt({photo: image})).then(res => {
-      console.log(res)
       if (res.uniqueCode && !res.uniqueCode.includes('NAN')) {
         dispatch(ResponseActions.notify({ title: "", message: 'Good job!', type: 'success', loading: false }));
         history.push(`/app/scan-result/${res?.uniqueCode?.replaceAll('#', '')}/${res?.points}`)

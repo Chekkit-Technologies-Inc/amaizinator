@@ -35,10 +35,6 @@ const TriviaHome = ({ className }) => {
     // eslint-disable-next-line
   }, [slug, triviaList])
 
-  // useEffect(() => {
-  //   console.log('trivia', trivia)
-  // }, [trivia])
-
   return (
     <div className={`${className} flex-1 flex flex-col text-white  p-4`}>
       <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>

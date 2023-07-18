@@ -49,11 +49,6 @@ const ScanTracker = ({ className }) => {
     // eslint-disable-next-line
   }, [dateRange])
 
-  useEffect(() => {
-    console.log('scannedReceipts', scannedReceipts)
-    // eslint-disable-next-line
-  }, [scannedReceipts])
-
   return (
     <FadeIn className={`${className} flex-1 flex flex-col text-gray-800 space-y-6 p-4 pb-12`}>
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import { CgSpinner } from 'react-icons/cg';
 import {ReactComponent as Logo} from './assets/logo.svg'
+import {HiHome as Home} from 'react-icons/hi'
 
 import Onboarding from './pages/1-onboarding';
 import Dashboard from './pages/2-dashboard';
@@ -113,6 +114,10 @@ function App() {
       {!userLoading &&
         <div style={{backgroundColor: background}} className={`h-full overflow-auto ${background}`}>
           <div className='w-full h-full flex flex-col max-w-sm mx-auto relative'>
+
+            <div className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
+              <Home className='cursor-pointer' size={24} />
+            </div>
             {!userLoading &&
               <Switch location={location}>
                 <Route exact path={['/', '/:slug', '/app/prizes', '/app/register', '/app/login']}>
