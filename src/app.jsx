@@ -112,54 +112,54 @@ function App() {
         </div>
       )}
       {!userLoading &&
-        <div style={{backgroundColor: background}} className={`h-full overflow-auto ${background}`}>
-          <div className='w-full h-full flex flex-col max-w-sm mx-auto relative'>
 
-            <div className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
-              <Home className='cursor-pointer' size={24} />
-            </div>
-            {!userLoading &&
-              <Switch location={location}>
-                <Route exact path={['/', '/:slug', '/app/prizes', '/app/register', '/app/login']}>
-                  <Onboarding />
-                </Route>
-                <Route exact path={['/app/dashboard', '/app/all-games']}>
-                  <Dashboard />
-                </Route>
-                <Route exact path={['/app/leaderboard', '/app/my-wins']}>
-                  <InfoManager />
-                </Route>
-                <Route exact path={['/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points']}>
-                  <Scanning />
-                </Route>
-                <Route exact path={['/app/my-account', '/app/update-profile', '/app/change-password']}>
-                  <Profile />
-                </Route>
-                <Route exact path={['/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points']}>
-                  <Trivia />
-                </Route>
-                <Route
-                  render={() => {
-                    return (
-                      <div className={`bg`}>
-                        <NotFound />;
-                      </div>
-                    );
-                  }}
-                />
-              </Switch>
-            }
-            <Route exact path={['/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password', '/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/my-account', '/', '/app/register', '/app/login']}>
-              <div className='flex justify-center p-1 pb-4'>
-                <div className='flex items-center space-x-1  justify-center'>
-                  <span className='text-gray-300 text-xs font-bold'>Powered by</span>
-                  <Logo className='text-black h-4 w-14'  />
-                </div>
+          <div style={{backgroundColor: background}} className={`h-full overflow-auto ${background}`}>
+            <div className='w-full h-full flex flex-col max-w-sm mx-auto relative'>
+              <div className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
+                <Home className='cursor-pointer' size={24} />
               </div>
-            </Route>
+              {!userLoading &&
+                <Switch location={location}>
+                  <Route exact path={['/', '/:slug', '/app/prizes', '/app/register', '/app/login']}>
+                    <Onboarding />
+                  </Route>
+                  <Route exact path={['/app/dashboard', '/app/all-games']}>
+                    <Dashboard />
+                  </Route>
+                  <Route exact path={['/app/leaderboard', '/app/my-wins']}>
+                    <InfoManager />
+                  </Route>
+                  <Route exact path={['/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points']}>
+                    <Scanning />
+                  </Route>
+                  <Route exact path={['/app/my-account', '/app/update-profile', '/app/change-password']}>
+                    <Profile />
+                  </Route>
+                  <Route exact path={['/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points']}>
+                    <Trivia />
+                  </Route>
+                  <Route
+                    render={() => {
+                      return (
+                        <div className={`bg`}>
+                          <NotFound />;
+                        </div>
+                      );
+                    }}
+                  />
+                </Switch>
+              }
+              <Route exact path={['/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password', '/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/my-account', '/', '/app/register', '/app/login']}>
+                <div className='flex justify-center p-1 pb-4'>
+                  <div className='flex items-center space-x-1  justify-center'>
+                    <span className='text-gray-300 text-xs font-bold'>Powered by</span>
+                    <Logo className='text-black h-4 w-14'  />
+                  </div>
+                </div>
+              </Route>
+            </div>
           </div>
 
-        </div>
       }
     </>
   );
