@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { format, parseISO } from 'date-fns';
 
 import SelectBox from '../../../components/select-box'
 import PointCard from '../../../components/point-card/point-card';
@@ -72,35 +73,30 @@ const MyWins = ({ className }) => {
         </div>
         <div className='text-xs text-gray-700'>You would see a log of your wins here</div>
       </FadeIn>
-      <PointCard point={53900} />
+      <PointCard point={winnings?.total_points?.points} />
       <div className='space-y-4'>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-        <div className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-          <div className='flex items-center space-x-4'>
-            <img className='h-12' src={Bambi} alt="" />
-            <div className='space-y-2'>
-              <div className='font-semibold'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>1 May 2020, 11:30 am</div>
-            </div>
-          </div>
-          <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-          <img className='w-4' src={PointIcon} alt="" />
-            <div>+ 500</div>
-          </div>
-        </div>
-
+      {winnings?.winngs ? winnings?.winngs?.length > 0 ? winnings?.winngs?.map((d, idx) => {
+            return (
+              <div key={idx} className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
+                <div className='flex items-center space-x-4'>
+                  <img className='h-14' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = Bambi;
+                  }} alt="" />
+                  <div className='space-y-2'>
+                    <div className='font-semibold'>{d?.survey?.title}</div>
+                    <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{format(parseISO(d?.survey?.created_at), 'dd-MM-yyyy, HH:mm a ')}</div>
+                  </div>
+                </div>
+                <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
+                <img className='w-4' src={PointIcon} alt="" />
+                  <div>+ {d?.reward_value}</div>
+                </div>
+              </div>
+            )
+          }) : (
+            <div>No winnings</div>
+          ) : <div>Loading...</div>}
       </div>
     </FadeIn>
   );

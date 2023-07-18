@@ -39,7 +39,7 @@ export const submitTrivia = (data) => async dispatch => {
 
     dispatch(notify({ title: "", message: 'Good job!', type: 'success', loading: false }));
 
-    return Promise.resolve(res?.data?.data);
+    return Promise.resolve(res?.data);
   } catch (err) {
     dispatch(notify({ title: "", message: err.response?.data?.message || err.message, type: 'error', loading: false }));
 

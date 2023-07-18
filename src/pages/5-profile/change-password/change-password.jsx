@@ -50,7 +50,7 @@ const ChangePassword = ({ className }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
+      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 flex flex-col text-gray-800`}>
         <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
           &larr;
         </div>

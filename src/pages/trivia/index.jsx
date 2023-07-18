@@ -10,19 +10,19 @@ import TriviaResult from './trivia-result';
 const routes = [
   {
     name: 'TriviaHome',
-    path: '/app/trivia-home',
+    path: '/app/trivia-home/:slug',
     component: TriviaHome,
     current: false,
   },
   {
     name: 'TriviaPlayer',
-    path: '/app/trivia-player',
+    path: '/app/trivia-player/:slug',
     component: TriviaPlayer,
     current: false,
   },
   {
     name: 'TriviaResult',
-    path: '/app/trivia-result',
+    path: '/app/trivia-result/:points',
     component: TriviaResult,
     current: false,
   }

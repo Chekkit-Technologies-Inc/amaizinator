@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Bambi from '../../../assets/bambi.svg'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {IoClose} from 'react-icons/io5'
 
@@ -10,11 +10,20 @@ import InputBox from '../../../components/input-box/input-box';
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
+import { UserActions, TriviaActions } from '../../../states/actions';
+
 const AllGames = ({ className }) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [phrase, setPhrase] = useState('')
   const {triviaList} = useSelector(state => state.trivia)
   useDocumentTitle('All Games')
+
+  useEffect(() => {
+    dispatch(TriviaActions.fetchTrivia())
+    dispatch(UserActions.fetchUserDetials())
+    // eslint-disable-next-line
+  }, [])
 
   useEffect(() => {
     console.log('triviaList', triviaList)
@@ -41,59 +50,22 @@ const AllGames = ({ className }) => {
         />
 
         <FadeIn className='grid grid-cols-2 gap-4'>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-            <img className='h-24' src={Bambi} alt="" />
-            <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-              <div className='font-semibold text-xs'>Bambi & Friends</div>
-              <div style={{fontSize: '10px'}} className='text-xs'>Trivia • 12 points</div>
-            </div>
-          </div>
-
-
-
-
-
+        {triviaList ? triviaList.length > 0 ? triviaList?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.content?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
+            return (
+              <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
+                <img className='h-24' src={d?.photo} onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = Bambi;
+                }} alt="" />
+                <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
+                  <div className='font-semibold text-xs'>{d.title}</div>
+                  <div style={{fontSize: '10px'}} className='text-xs'>Trivia • {d?.reward?.reward_value} point{d?.reward?.reward_value > 1 ? 's' : ''}</div>
+                </div>
+              </Link>
+            )
+          }) : (
+            <div>No Games</div>
+          ) : <div>Loading...</div>}
         </FadeIn>
       </div>
     </div>

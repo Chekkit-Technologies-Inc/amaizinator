@@ -15,7 +15,7 @@ const routes = [
   },
   {
     name: 'Scan',
-    path: ['/app/scan', '/app/scan-result/:id'],
+    path: ['/app/scan', '/app/scan-result/:unique_code/:points'],
     component: Scan,
     current: false,
   }

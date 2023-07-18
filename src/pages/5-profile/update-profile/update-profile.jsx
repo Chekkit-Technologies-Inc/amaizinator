@@ -28,7 +28,8 @@ const UpdateProfile = ({ className }) => {
   useEffect(() => {
     if (user?.id) {
       let data = {
-        full_name: `${user?.first_name} ${user?.last_name}`,
+        full_name: `${user?.first_name ? user?.first_name :
+          ''} ${user?.last_name ? user?.last_name : ''}`,
         phone_number: `0${user?.phone_number}`,
         date_of_birth: user?.date_of_birth ? user?.date_of_birth : user?.age_range
       }
@@ -67,7 +68,7 @@ const UpdateProfile = ({ className }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 pb-12 flex flex-col text-gray-800`}>
+      <form onSubmit={handleSubmit} className={`${className} flex-1 p-4 flex flex-col text-gray-800`}>
         <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
           &larr;
         </div>

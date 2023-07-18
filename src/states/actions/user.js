@@ -39,6 +39,23 @@ export const register = data => async dispatch => {
   }
 };
 
+export const fetchUserDetials = () => async dispatch => {
+  dispatch(loading({ loading: true }));
+
+  try {
+    const res = await UserService.retrieveUserDetials();
+
+    dispatch(notify({ loading: false }));
+
+    dispatch(updateUser({points: res?.data?.data?.points}))
+    return Promise.resolve(res?.data?.data);
+  } catch (err) {
+    dispatch(notify({ loading: false }));
+
+    return Promise.reject(err);
+  }
+};
+
 export const updateUser = data => async dispatch => {
   dispatch({
     type: UPDATE_USER,
@@ -56,6 +73,7 @@ export const logout = () => async dispatch => {
 const UserActions = {
   login,
   register,
+  fetchUserDetials,
   updateUser,
   logout,
 };

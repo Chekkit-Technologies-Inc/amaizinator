@@ -20,7 +20,7 @@ const MyAccount = ({ className }) => {
   useDocumentTitle('My Account')
 
   return (
-    <div className={`${className} flex-1 flex flex-col text-white  p-4 pb-6`}>
+    <div className={`${className} flex-1 flex flex-col text-white  p-4`}>
       <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
         &larr;
       </div>
@@ -29,10 +29,12 @@ const MyAccount = ({ className }) => {
 
       <div className='flex flex-col flex-1 h-full'>
         <div className='bg-green_light text-white hover:text-white w-24 h-24 flex justify-center items-center rounded-full mx-auto relative top-8 text-2xl font-bold'>
-          {getInitials(`${user?.first_name} ${user?.last_name}`)}
+          {getInitials(`${user?.first_name ? user?.first_name :
+          ''} ${user?.last_name ? user?.last_name : ''}`)}
         </div>
         <div className='bg-white flex-1 rounded-2xl text-gray-800 p-4 pt-10'>
-          <div className='font-bold text-lg text-center capitalize'>{`${user?.first_name} ${user?.last_name}`}</div>
+          <div className='font-bold text-lg text-center capitalize'>{`${user?.first_name ? user?.first_name :
+          ''} ${user?.last_name ? user?.last_name : ''}`}</div>
 
           <FadeIn className='space-y-4 mt-6'>
             <Link to='/app/update-profile' className='no-underline hover:no-underline flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
