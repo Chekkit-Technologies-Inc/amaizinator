@@ -88,6 +88,7 @@ const Register = ({ className }) => {
       phoneNumber: phone,
       ageRange: userDetail.date_of_birth,
       password: userDetail.password,
+      location: userDetail.location,
       country: "Nigeria",
       currency: "NGN",
       call_code: "+234"
