@@ -18,8 +18,8 @@ const form = {
   full_name: '',
   phone_number: '',
   date_of_birth: '',
-  password: '',
-  location: { options: states }
+  location: { options: states },
+  password: ''
 };
 
 const Register = ({ className }) => {
