@@ -13,7 +13,7 @@ export const updateProfile = async data => {
 };
 
 export const changePassword = async data => {
-  return http().put('/app-signin', data);
+  return httpNormal().post('/users/change-password', data);
 };
 
 export const retrieveUserDetials = async () => {
