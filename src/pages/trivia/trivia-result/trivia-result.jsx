@@ -33,7 +33,7 @@ const TriviaResult = ({ className }) => {
               <Button onClick={() => history.push('/app/dashboard')} text={'Goto Dashboard'} />
                 <RWebShare
                   data={{
-                    text: `You just won ${points} points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points`,
+                    text: `${user?.first_name} just won ${points} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
                     url: window.location.href,
                     title: `Congratulations ${user?.first_name}!`,
                   }}
