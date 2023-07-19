@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { UserActions, TriviaActions } from '../../../states/actions';
 
-import PointIcon from '../../../assets/point.svg'
+import {ReactComponent as PointIcon} from '../../../assets/point.svg'
 import PrizeIcon from '../../../assets/prizes.svg'
 import WinIcon from '../../../assets/wins.svg'
 import ScanIcon from '../../../assets/scan.svg'
@@ -80,7 +80,7 @@ const Dashboard = ({ className }) => {
         <div className='flex items-center space-x-4 justify-between'>
           <div className='flex items-center space-x-2 bg-green_light rounded-3xl p-2'>
             <div className='bg-white rounded-full p-1'>
-              <img className='' src={PointIcon} alt="" />
+              <PointIcon className='' alt="" />
             </div>
             <b className='text-base'>{user?.points ? user?.points : 0}</b>
             <div className='text-sm font-medium'>Point{user?.points > 1 ? 's' : ''}</div>
