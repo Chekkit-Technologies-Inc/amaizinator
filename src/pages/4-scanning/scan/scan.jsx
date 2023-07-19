@@ -55,7 +55,7 @@ const Scan = ({ className }) => {
             {!image ? <div className='w-full m-10 bg-camera p-1'>
               <Camera ref={camera} mirrored={"true"} facingMode="environment" aspectRatio={1 / 1} />
             </div> :<div className='w-full m-10'>
-              <img src={image} alt='Taken'/>
+              <img className="rounded-2xl" src={image} alt='Taken'/>
             </div>  }
           </div>
 
@@ -67,7 +67,7 @@ const Scan = ({ className }) => {
                 <div onClick={() => setImage(null)} className={`${loading ? 'pointer-events-none opacity-50' : ''} border border-green-100 text-green_dark font-semibold px-6 py-4 text-center rounded-xl cursor-pointer`}>Retake photo</div>
                 <div onClick={scanImage} className='text-white bg-green_dark font-semibold px-6 py-4 text-center rounded-xl cursor-pointer'>
                   {!loading && (
-                    <span>Scan photo</span>
+                    <span>Process photo</span>
                   )}
                   {loading && (
                     <div className='flex justify-center'>
