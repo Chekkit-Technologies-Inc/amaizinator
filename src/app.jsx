@@ -133,7 +133,7 @@ function App() {
       {!userLoading &&
 
           <div style={{backgroundColor: background}} className={`h-full overflow-auto ${background}`}>
-            <div className='w-full h-full flex flex-col max-w-sm mx-auto relative'>
+            <div className='w-full h-full flex flex-col max-w-md mx-auto relative'>
               <div className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
                 <Home className='cursor-pointer' size={24} />
               </div>

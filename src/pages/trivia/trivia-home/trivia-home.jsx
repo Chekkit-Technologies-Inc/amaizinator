@@ -54,7 +54,7 @@ const TriviaHome = ({ className }) => {
               <div className='font-semibold'>{trivia?.title}</div>
             </div>
 
-            <div className='bg-green_lightx rounded-xl p-4 flex gap-4'>
+            <div className='bg-green_lightx rounded-xl p-4 flex gap-4 overflow-auto no-scrollbar'>
               <div className='flex-1 flex justify-center items-center space-x-2'>
                 <div className='bg-white w-6 h-6 flex justify-center items-center rounded-lg'>
                   <PointIcon />
