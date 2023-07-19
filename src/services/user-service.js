@@ -9,7 +9,7 @@ export const login = async data => {
 };
 
 export const updateProfile = async data => {
-  return http().put('/app-signin', data);
+  return httpNormal().put('/amazing-day-campaign/profile', data);
 };
 
 export const changePassword = async data => {

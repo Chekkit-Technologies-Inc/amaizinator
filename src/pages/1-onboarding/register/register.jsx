@@ -18,7 +18,7 @@ const form = {
   full_name: '',
   phone_number: '',
   date_of_birth: '',
-  location: { options: states },
+  state: { options: states },
   password: ''
 };
 
@@ -88,7 +88,7 @@ const Register = ({ className }) => {
       phoneNumber: phone,
       ageRange: userDetail.date_of_birth,
       password: userDetail.password,
-      location: userDetail.location,
+      state: userDetail.state,
       country: "Nigeria",
       currency: "NGN",
       call_code: "+234"
