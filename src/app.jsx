@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { CgSpinner } from 'react-icons/cg';
 import {ReactComponent as Logo} from './assets/logo.svg'
 import {HiHome as Home} from 'react-icons/hi'
+import BarLoader from "react-spinners/BarLoader"
 
 import Onboarding from './pages/1-onboarding';
 import Dashboard from './pages/2-dashboard';
@@ -15,6 +16,13 @@ import Trivia from './pages/trivia'
 import NotFound from './pages/404-page';
 
 import { UserActions } from './states/actions';
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  width: '100%',
+  height: '2px'
+};
 
 function App() {
   const history = useHistory()
@@ -106,6 +114,17 @@ function App() {
           // },
         }}
       />
+      {response.loading && (
+        <BarLoader
+          color={'#479C46'}
+          loading={true}
+          cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      )}
+
       {userLoading && (
         <div className={`absolute top-0 bottom-0 left-0 right-0 z-20 flex justify-center items-center`}>
           <CgSpinner className={`text-yellow_dark animate-spin`} size={64} />

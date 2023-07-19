@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { FiLoader } from 'react-icons/fi';
 
 import Welcome from './welcome';
 import Prizes from './prizes';
@@ -36,7 +34,6 @@ const routes = [
 ];
 
 const Index = () => {
-  const response = useSelector(state => state.response);
   const location = useLocation();
   const [items, setItems] = useState(routes);
   // const user = useSelector(state => state.user);
@@ -59,24 +56,16 @@ const Index = () => {
   }, [location]);
 
   return (
-    <>
-      {response.loading && (
-        <div className='flex justify-center p-4'>
-          <FiLoader className='animate-spin text-yellow_dark' size={16} />
-        </div>
-      )}
-
-      <Switch>
-        {items.map((route, i) => {
-          return (
-            <Route exact key={i} path={route.path}>
-              <route.component />
-            </Route>
-          );
-        })}
-        <Redirect to='/' />
-      </Switch>
-    </>
+    <Switch>
+      {items.map((route, i) => {
+        return (
+          <Route exact key={i} path={route.path}>
+            <route.component />
+          </Route>
+        );
+      })}
+      <Redirect to='/' />
+    </Switch>
   );
 };
 
