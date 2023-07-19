@@ -17,6 +17,8 @@ import Bambi from '../../../assets/bambi.svg'
 import {ReactComponent as Logout} from '../../../assets/logout.svg'
 
 import {getInitials} from '../../../util'
+// import {getInitials} from '../../../util'
+
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
