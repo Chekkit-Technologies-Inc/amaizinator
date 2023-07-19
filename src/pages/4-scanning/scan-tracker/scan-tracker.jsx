@@ -98,7 +98,7 @@ const ScanTracker = ({ className }) => {
               <div key={idx} onClick={() => history.push(`/app/scan-result/${d?.uniqueCode?.replaceAll('#', '')}/${d?.points}`)} className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3 cursor-pointer'>
                 <div className='flex items-center space-x-4'>
                   <div className='h-12 w-12 bg-gray-100 rounded-xl overflow-hidden'>
-                    <img className='h-12' src={d?.imageUrl} alt="" />
+                    <img className='h-12 object-cover object-top rounded-2xl' src={d?.imageUrl} alt="" />
                   </div>
                   <div className='space-y-2'>
                     <div className='font-semibold'>{d?.uniqueCode}</div>

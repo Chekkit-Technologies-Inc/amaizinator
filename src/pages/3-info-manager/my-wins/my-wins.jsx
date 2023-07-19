@@ -74,7 +74,7 @@ const MyWins = ({ className }) => {
             return (
               <div key={idx} className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
                 <div className='flex items-center space-x-4'>
-                  <img className='h-14' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
+                  <img className='h-14 object-cover object-top rounded-2xl' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
                     e.target.onerror = null;
                     e.target.src = Bambi;
                   }} alt="" />

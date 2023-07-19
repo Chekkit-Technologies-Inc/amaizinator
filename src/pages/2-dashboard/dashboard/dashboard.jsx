@@ -125,7 +125,7 @@ const Dashboard = ({ className }) => {
           {triviaList ? triviaList.length > 0 ? triviaList.slice(0, 6).map((d, idx) => {
             return (
               <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-                <img className='h-24 rounded-2xl' src={d?.photo} onError={e => {
+                <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl' src={d?.photo} onError={e => {
                   e.target.onerror = null;
                   e.target.src = Bambi;
                 }} alt="" />
