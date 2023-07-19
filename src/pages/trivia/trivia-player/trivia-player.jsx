@@ -94,7 +94,7 @@ const TriviaPlayer = ({ className }) => {
             <div className='font-extrabold text-sm'>{trivia?.reward?.reward_value ? Math.round(trivia?.reward?.reward_value / trivia?.question?.length) : 0}</div>
           </div>
         </div>
-        <div className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
+        <div className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-16 justify-between'>
           <FadeIn className='space-y-6'>
             {trivia && <div className='space-y-2'>
               <div className='font-bold text-xs text-gray-400'>Question {index + 1} of {trivia?.question?.length}</div>
