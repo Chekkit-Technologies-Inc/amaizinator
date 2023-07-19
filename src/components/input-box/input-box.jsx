@@ -51,7 +51,6 @@ const InputBox = ({ onValueChange, value, inputType, placeholder, name, classNam
             required={true}
             spellCheck={false}
             readOnly={readOnly}
-            disabled={(inputType === 'phone_number' || inputType === 'date_of_birth') && readOnly ? true : false}
           />
           {typex === 'password' && (
               <BsEyeSlashFill
