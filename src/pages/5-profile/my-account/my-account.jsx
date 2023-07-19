@@ -32,7 +32,7 @@ const MyAccount = ({ className }) => {
           {getInitials(`${user?.first_name ? user?.first_name :
           ''} ${user?.last_name ? user?.last_name : ''}`)}
         </div>
-        <div className='bg-white flex-1 rounded-2xl text-gray-800 p-4 pt-10'>
+        <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-4 pt-10 min-h-64'>
           <div className='font-bold text-lg text-center capitalize'>{`${user?.first_name ? user?.first_name :
           ''} ${user?.last_name ? user?.last_name : ''}`}</div>
 

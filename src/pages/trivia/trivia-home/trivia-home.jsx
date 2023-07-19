@@ -47,7 +47,7 @@ const TriviaHome = ({ className }) => {
         <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
           <BoxQuestion />
         </div>
-        <div className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
+        <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
           <FadeIn className='space-y-6'>
             <div>
               <div className='font-bold text-xs text-gray-400'>Trivia Title</div>
