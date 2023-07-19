@@ -31,10 +31,12 @@ const Dashboard = ({ className }) => {
   useDocumentTitle('Dashboard')
 
   const logout = () => {
-    dispatch(UserActions.logout()).then(_ => {
-      history.push('/')
-    })
-  }
+    if (window.confirm('Logout ?')) {
+      dispatch(UserActions.logout()).then(_ => {
+        history.push('/')
+      })
+    }
+  };
 
   useEffect(() => {
     dispatch(TriviaActions.fetchTrivia())
