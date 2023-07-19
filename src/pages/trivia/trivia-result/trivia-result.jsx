@@ -30,7 +30,7 @@ const TriviaResult = ({ className }) => {
               <div className='text-gray-800 font-medium'>You just won <b>{points}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
             </div>
             <div className='space-y-6'>
-              <Button onClick={() => history.push('/app/dashboard')} text={'Goto Dashboard'} />
+              <Button onClick={() => history.push('/app/leaderboard')} text={'Goto Leaderboard'} />
                 <RWebShare
                   data={{
                     text: `${user?.first_name} just won ${points} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
