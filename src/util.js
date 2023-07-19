@@ -1,5 +1,6 @@
 import {format} from 'date-fns'
 import moment from 'moment';
+import Game2048 from './assets/2048.png'
 
 export function getTodayDate() {
   return format(new Date(), 'yyyy-MM-dd');
@@ -61,3 +62,7 @@ export const getInitials = name => {
   initials = ((initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')).toUpperCase();
   return initials;
 };
+
+export const games = [
+  {title: '2048', content: 'game', photo: Game2048, url: 'https://fmn-2048.vercel.app', isGame: true}
+]

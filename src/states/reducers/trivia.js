@@ -1,6 +1,7 @@
 import { FETCH_TRIVIA, FETCH_LEADERBOARD, FETCH_WINNINGS } from '../type';
+import {games} from '../../util'
 
-const initialState = {};
+const initialState = {games};
 
 const triviaReducer = (trivia = initialState, action) => {
   const { type, payload } = action;

@@ -17,14 +17,13 @@ import Bambi from '../../../assets/bambi.svg'
 import {ReactComponent as Logout} from '../../../assets/logout.svg'
 
 import {getInitials} from '../../../util'
-// import {getInitials} from '../../../util'
 
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
 const Dashboard = ({ className }) => {
   const user = useSelector(state => state.user)
-  const {triviaList} = useSelector(state => state.trivia)
+  const {triviaList, games} = useSelector(state => state.trivia)
   const history = useHistory()
   const dispatch = useDispatch()
   // const [showConfetti, setShowConfetti] = useState(false)
@@ -127,18 +126,33 @@ const Dashboard = ({ className }) => {
           <Link to='/app/all-games' className='font-medium text-sm text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize'>View All Games</Link>
         </div>
         <FadeIn className='grid grid-cols-2 gap-4'>
-          {triviaList ? triviaList.length > 0 ? triviaList.slice(0, 6).map((d, idx) => {
+          {triviaList ? (triviaList.length > 0 || games.length > 0) ? [...games, ...triviaList].slice(0, 6).map((d, idx) => {
             return (
-              <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-                <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
-                  e.target.onerror = null;
-                  e.target.src = Bambi;
-                }} alt="" />
-                <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-                  <div className='font-semibold text-xs line-clamp-1'>{d.title}</div>
-                  <div style={{fontSize: '10px'}} className='text-xs line-clamp-1'>Trivia • {d?.reward?.reward_value} point{d?.reward?.reward_value > 1 ? 's' : ''}</div>
-                </div>
-              </Link>
+              <>
+                {d?.isGame ? (
+                  <a href={d.url} target='_self' rel="noreferrer" key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
+                    <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
+                      e.target.onerror = null;
+                      e.target.src = Bambi;
+                    }} alt="" />
+                    <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
+                      <div className='font-semibold text-xs line-clamp-1'>{d.title}</div>
+                      <div style={{fontSize: '10px'}} className='text-xs line-clamp-1'>Game</div>
+                    </div>
+                  </a>
+                ) : (
+                  <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
+                    <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
+                      e.target.onerror = null;
+                      e.target.src = Bambi;
+                    }} alt="" />
+                    <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
+                      <div className='font-semibold text-xs line-clamp-1'>{d.title}</div>
+                      <div style={{fontSize: '10px'}} className='text-xs line-clamp-1'>Trivia • {d?.reward?.reward_value} point{d?.reward?.reward_value > 1 ? 's' : ''}</div>
+                    </div>
+                  </Link>
+                )}
+              </>
             )
           }) : (
             <div>No Games</div>
