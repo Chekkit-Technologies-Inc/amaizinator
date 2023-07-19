@@ -15,9 +15,9 @@ import { ResponseActions, UserActions } from '../../../states/actions';
 
 const form = {
   full_name: '',
+  location: { options: states },
   phone_number: '',
   date_of_birth: '',
-  location: { options: states },
 };
 
 const UpdateProfile = ({ className }) => {
@@ -121,12 +121,13 @@ const UpdateProfile = ({ className }) => {
                   <label key={field} className='block capitalize'>
                     <span className='font-medium'>{processField(field)}</span>
                     <InputBox
-                      className={`bg-yellow-50 text-green_light`}
+                      className={`bg-yellow-50 text-green_light ${(field === 'phone_number' || field === 'date_of_birth') ? `pointer-events-none opacity-50` : ``}`}
                       placeholder={processField(field)}
                       inputType={field === 'phone_number' ? `phone_number` : field === 'date_of_birth' ? 'date' : `text`}
                       onValueChange={handleInputChange}
                       value={userDetail[field]}
                       name={field}
+                      readOnly={(field === 'phone_number' || field === 'date_of_birth') ? true : false}
                     />
                   </label>
                 );

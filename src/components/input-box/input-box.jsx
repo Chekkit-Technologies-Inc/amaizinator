@@ -6,7 +6,7 @@ import { FiSearch } from 'react-icons/fi';
 import {ReactComponent as CalIcon} from '../../assets/calendar-nocolor.svg'
 
 
-const InputBox = ({ onValueChange, value, inputType, placeholder, name, className }) => {
+const InputBox = ({ onValueChange, value, inputType, placeholder, name, className, readOnly }) => {
   const [typex, setTypex] = useState('');
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const InputBox = ({ onValueChange, value, inputType, placeholder, name, classNam
             placeholder={placeholder}
             required={true}
             spellCheck={false}
+            readOnly={readOnly}
           />
           {typex === 'password' && (
               <BsEyeSlashFill
