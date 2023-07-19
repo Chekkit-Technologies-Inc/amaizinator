@@ -46,11 +46,12 @@ const InputBox = ({ onValueChange, value, inputType, placeholder, name, classNam
             value={value}
             type={inputType === 'phone_number' ? 'number' : typex === 'textx' ? 'text' : inputType}
             onChange={onValueChange}
-            className={`h-full focus:outline-none mr-2 ml-4 my-4 w-full bg-transparent ${(inputType === 'phone_number' || inputType === 'date_of_birth') && readOnly ? `pointer-events-none opacity-50` : ``}`}
+            className={`h-full focus:outline-none mr-2 ml-4 my-4 w-full bg-transparent`}
             placeholder={placeholder}
             required={true}
             spellCheck={false}
             readOnly={readOnly}
+            disabled={(inputType === 'phone_number' || inputType === 'date_of_birth') && readOnly ? true : false}
           />
           {typex === 'password' && (
               <BsEyeSlashFill
