@@ -91,7 +91,7 @@ const Dashboard = ({ className }) => {
       </FadeIn>
       <div className='space-y-3'>
         <div className='font-semibold text-base px-4'>Quick Links</div>
-        <FadeIn className='flex items-center gap-4 px-4 overflow-auto pb-3 no-scrollbar'>
+        <FadeIn className='flex items-center gap-4 px-4 overflow-auto py-3 no-scrollbar bg-black bg-opacity-5'>
 
           <div className='overflow-hidden rounded-2xl no-scrollbar'>
             <Link to='/app/prizes' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-green-50 hover:opacity-80 text-green_light hover:text-green_light no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly relative'>
