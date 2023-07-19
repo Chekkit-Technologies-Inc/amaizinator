@@ -10,6 +10,15 @@ body,
   @apply bg-yellow-50;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .curly {
   font-family: 'Baloo 2', cursive;
 }

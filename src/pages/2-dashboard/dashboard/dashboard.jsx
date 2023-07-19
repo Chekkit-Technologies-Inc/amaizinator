@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
+import Confetti from 'react-confetti'
 
 import { UserActions, TriviaActions } from '../../../states/actions';
 
@@ -23,6 +24,7 @@ const Dashboard = ({ className }) => {
   const {triviaList} = useSelector(state => state.trivia)
   const history = useHistory()
   const dispatch = useDispatch()
+  const [showConfetti, setShowConfetti] = useState(false)
   useDocumentTitle('Dashboard')
 
   const logout = () => {
@@ -36,6 +38,29 @@ const Dashboard = ({ className }) => {
     dispatch(UserActions.fetchUserDetials())
     // eslint-disable-next-line
   }, [])
+
+  useEffect(() => {
+    setShowConfetti(true)
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (!showConfetti) {
+      setTimeout(() => {
+        setShowConfetti(true)
+      }, 20000);
+    }
+    // eslint-disable-next-line
+  }, [showConfetti])
+
+  useEffect(() => {
+    if (showConfetti) {
+      setTimeout(() => {
+        setShowConfetti(false)
+      }, 5000);
+    }
+    // eslint-disable-next-line
+  }, [showConfetti])
 
   return (
     <div className={`${className} flex-1 flex flex-col text-white space-y-6 pt-6 pb-12`}>
@@ -63,12 +88,15 @@ const Dashboard = ({ className }) => {
       </FadeIn>
       <div className='space-y-3'>
         <div className='font-semibold text-base px-4'>Quick Links</div>
-        <FadeIn className='flex items-center gap-4 px-4 overflow-auto pb-3'>
+        <FadeIn className='flex items-center gap-4 px-4 overflow-auto pb-3 no-scrollbar'>
 
-          <Link to='/app/prizes' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-green-50 hover:opacity-80 text-green_light hover:text-green_light no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly'>
-            <img className='' src={PrizeIcon} alt="" />
-            <div className='flex-shrink-0'>See Prizes</div>
-          </Link>
+          <div className='overflow-auto no-scrollbar'>
+            <Link to='/app/prizes' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-green-50 hover:opacity-80 text-green_light hover:text-green_light no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly relative'>
+              {showConfetti && <Confetti numberOfPieces={500} wind={0.1} />}
+              <img className='' src={PrizeIcon} alt="" />
+              <div className='flex-shrink-0'>See Prizes</div>
+            </Link>
+          </div>
 
           <Link to='/app/my-wins' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-yellow-50 hover:opacity-80 text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly'>
             <img className='' src={WinIcon} alt="" />
@@ -97,12 +125,12 @@ const Dashboard = ({ className }) => {
           {triviaList ? triviaList.length > 0 ? triviaList.slice(0, 6).map((d, idx) => {
             return (
               <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
-                <img className='h-24' src={d?.photo} onError={e => {
+                <img className='h-24 rounded-2xl' src={d?.photo} onError={e => {
                   e.target.onerror = null;
                   e.target.src = Bambi;
                 }} alt="" />
                 <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
-                  <div className='font-semibold text-xs'>{d.title}</div>
+                  <div className='font-semibold text-xs line-clamp-1'>{d.title}</div>
                   <div style={{fontSize: '10px'}} className='text-xs'>Trivia • {d?.reward?.reward_value} point{d?.reward?.reward_value > 1 ? 's' : ''}</div>
                 </div>
               </Link>
