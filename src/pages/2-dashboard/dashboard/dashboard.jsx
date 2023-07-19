@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
-import Confetti from 'react-confetti'
+// import { useState} from 'react';
+// import Confetti from 'react-confetti'
 
 import { UserActions, TriviaActions } from '../../../states/actions';
 
@@ -24,7 +25,7 @@ const Dashboard = ({ className }) => {
   const {triviaList} = useSelector(state => state.trivia)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [showConfetti, setShowConfetti] = useState(false)
+  // const [showConfetti, setShowConfetti] = useState(false)
   useDocumentTitle('Dashboard')
 
   const logout = () => {
@@ -39,28 +40,28 @@ const Dashboard = ({ className }) => {
     // eslint-disable-next-line
   }, [])
 
-  useEffect(() => {
-    setShowConfetti(true)
-    // eslint-disable-next-line
-  }, [])
+  // useEffect(() => {
+  //   setShowConfetti(true)
+  //   // eslint-disable-next-line
+  // }, [])
 
-  useEffect(() => {
-    if (!showConfetti) {
-      setTimeout(() => {
-        setShowConfetti(true)
-      }, 20000);
-    }
-    // eslint-disable-next-line
-  }, [showConfetti])
+  // useEffect(() => {
+  //   if (!showConfetti) {
+  //     setTimeout(() => {
+  //       setShowConfetti(true)
+  //     }, 20000);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [showConfetti])
 
-  useEffect(() => {
-    if (showConfetti) {
-      setTimeout(() => {
-        setShowConfetti(false)
-      }, 5000);
-    }
-    // eslint-disable-next-line
-  }, [showConfetti])
+  // useEffect(() => {
+  //   if (showConfetti) {
+  //     setTimeout(() => {
+  //       setShowConfetti(false)
+  //     }, 5000);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [showConfetti])
 
   return (
     <div className={`${className} flex-1 flex flex-col text-white space-y-6 pt-6 pb-12`}>
@@ -92,7 +93,7 @@ const Dashboard = ({ className }) => {
 
           <div className='overflow-hidden rounded-2xl no-scrollbar'>
             <Link to='/app/prizes' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-green-50 hover:opacity-80 text-green_light hover:text-green_light no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly relative'>
-              {showConfetti && <Confetti numberOfPieces={500} wind={0.1} />}
+              {/* {showConfetti && <Confetti numberOfPieces={500} wind={0.1} />} */}
               <img className='' src={PrizeIcon} alt="" />
               <div className='flex-shrink-0'>See Prizes</div>
             </Link>
