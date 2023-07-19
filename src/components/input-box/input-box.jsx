@@ -46,7 +46,7 @@ const InputBox = ({ onValueChange, value, inputType, placeholder, name, classNam
             value={value}
             type={inputType === 'phone_number' ? 'number' : typex === 'textx' ? 'text' : inputType}
             onChange={onValueChange}
-            className={`h-full focus:outline-none mr-2 ml-4 my-4 w-full bg-transparent`}
+            className={`h-full focus:outline-none mr-2 ml-4 my-4 w-full bg-transparent ${(field === 'phone_number' || field === 'date_of_birth') && readOnly ? `pointer-events-none opacity-50` : ``}`}
             placeholder={placeholder}
             required={true}
             spellCheck={false}
