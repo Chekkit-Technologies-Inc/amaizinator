@@ -72,14 +72,16 @@ const MyWins = ({ className }) => {
       <div className='space-y-4'>
       {winnings?.winngs ? winnings?.winngs?.length > 0 ? winnings?.winngs?.map((d, idx) => {
             return (
-              <div key={idx} className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3'>
-                <div className='flex items-center space-x-4'>
-                  <img className='h-14 object-cover object-top rounded-2xl' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
-                    e.target.onerror = null;
-                    e.target.src = Bambi;
-                  }} alt="" />
-                  <div className='space-y-2'>
-                    <div className='font-semibold'>{d?.survey?.title}</div>
+              <div key={idx} className='flex items-center space-x-4 bg-green_lightx rounded-2xl p-3'>
+                <div className='flex items-center space-x-4 flex-1'>
+                  <div className='h-14 w-14 rounded-2xl bg-green_lightx'>
+                    <img className='h-14 w-14 object-cover object-top rounded-2xl' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
+                      e.target.onerror = null;
+                      e.target.src = Bambi;
+                    }} alt="" />
+                  </div>
+                  <div className='space-y-2 flex-1'>
+                    <div className='font-semibold line-clamp-1'>{d?.survey?.title}</div>
                     <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{format(parseISO(d?.survey?.created_at), 'dd-MM-yyyy, HH:mm a ')}</div>
                   </div>
                 </div>

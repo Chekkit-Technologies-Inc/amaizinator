@@ -95,12 +95,12 @@ const ScanTracker = ({ className }) => {
 
         {scannedReceipts ? scannedReceipts?.length > 0 ? scannedReceipts?.filter(d => d?.uniqueCode?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.created_at?.toLowerCase()?.includes(phrase?.toLowerCase()) || String(d?.points)?.toLowerCase()?.includes(phrase?.toLowerCase()))?.map((d, idx) => {
             return (
-              <div key={idx} onClick={() => history.push(`/app/scan-result/${d?.uniqueCode?.replaceAll('#', '')}/${d?.points}`)} className='flex items-center space-x-4 justify-between bg-green_lightx rounded-2xl p-3 cursor-pointer'>
-                <div className='flex items-center space-x-4'>
+              <div key={idx} onClick={() => history.push(`/app/scan-result/${d?.uniqueCode?.replaceAll('#', '')}/${d?.points}`)} className='flex items-center space-x-4 bg-green_lightx rounded-2xl p-3 cursor-pointer'>
+                <div className='flex items-center space-x-4 flex-1'>
                   <div className='h-12 w-12 bg-gray-100 rounded-xl overflow-hidden'>
-                    <img className='h-12 object-cover object-top rounded-2xl' src={d?.imageUrl} alt="" />
+                    <img className='h-12 w-12 object-cover object-top rounded-2xl' src={d?.imageUrl} alt="" />
                   </div>
-                  <div className='space-y-2'>
+                  <div className='space-y-2 flex-1'>
                     <div className='font-semibold'>{d?.uniqueCode}</div>
                     <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{format(parseISO(d?.created_at), 'dd-MM-yyyy, HH:mm a ')}</div>
                   </div>
