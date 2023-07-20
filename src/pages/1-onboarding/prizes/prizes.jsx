@@ -60,7 +60,7 @@ const Prizes = ({ className }) => {
           <div className='h-52'>
             <img src={OverallReward} alt='' className='w-full' />
           </div>
-          <div className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 text-center flex flex-col w-72 mx-auto py-8 space-y-4'>
+          <div className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 text-center flex flex-col w-72 mx-auto py-8 pt-12 space-y-4'>
 
             <Carousel as={'div'} autoplay className="custom-slider">
               <div>
