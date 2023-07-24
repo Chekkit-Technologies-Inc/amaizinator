@@ -39,7 +39,7 @@ const Prizes = ({ className }) => {
               <RewardAirtime alt='' />
             </div>
             <div className='text-green_dark font-semibold text-xl'>₦100 Airtime</div>
-            <div className='text-gray-800 font-medium'><b>1,250</b> winners of this airtime across the next <b>20 days</b>, Only Top ranking <b>62</b> users will be rewarded and disbursement is after <b>11 PM</b> every winning weekday.</div>
+            <div className='text-gray-800 font-medium'><b>25,000</b> winners of this airtime across the next <b>20 days</b>, Only Top ranking <b>1,250</b> users will be rewarded and disbursement is after <b>11 PM</b> every winning weekday.</div>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ const Prizes = ({ className }) => {
               <img src={RewardGiftbag} alt='' />
             </div>
             <div className='text-green_dark font-semibold text-xl'>₦5,000 Gift pack</div>
-            <div className='text-gray-800 font-medium'><b>100</b> winners of this gift pack for <b>4</b> weekends. Only Top ranking <b>25</b> users will be rewarded every weekend and disbursement is after <b>11 PM</b> every Saturday Night.</div>
+            <div className='text-gray-800 font-medium'><b>400</b> winners of this gift pack for <b>4</b> weekends. Only Top ranking <b>100</b> users will be rewarded every weekend and disbursement is after <b>11 PM</b> every Saturday Night.</div>
           </div>
         </div>
 
