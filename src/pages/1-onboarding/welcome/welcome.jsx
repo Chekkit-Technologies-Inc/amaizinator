@@ -44,7 +44,7 @@ const Welcome = ({ className }) => {
           <div className='leading-6 tracking-wide text-sm'>
 Join Captain Amaizing, a smart, fun-loving character who is passionate about health and inspiring kids like you to become Amaizing! With the Power of 4 in the Amaizing Day Cereal as his superpower, Captain Amaizing is here to guide you on an exciting journey.</div>
           <div className='leading-6 tracking-wide pt-2 text-sm'>
-          Amaizinators, like yourself, are fortified, nurtured, and empowered with the "Power of 4": dietary fiber, vitamin A, calcium, and protein. These essential nutrients are carefully packed into every serving of the Amaizing Day Cereal, keeping you Amaizing Always!
+          Amaizinators, like yourself, are fortified, nurtured, and empowered with the "<span className='text-green_light'>Power of 4</span>": <span className='text-green_light'>dietary fiber, vitamin A, calcium,</span> and <span className='text-green_light'>protein</span>. These essential nutrients are carefully packed into every serving of the Amaizing Day Cereal, keeping you Amaizing Always!
           </div>
         </FadeIn>
 
