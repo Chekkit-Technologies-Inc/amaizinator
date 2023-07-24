@@ -67,7 +67,7 @@ const AllGames = ({ className }) => {
                     }} alt="" />
                     <div className='flex-shrink-0 w-full space-y-1 bg-green_light rounded-2xl p-3 text-white hover:text-white'>
                       <div className='font-semibold text-xs line-clamp-1'>{d.title}</div>
-                      <div style={{fontSize: '10px'}} className='text-xs line-clamp-1'>Trivia • {d?.reward?.reward_value} point{d?.reward?.reward_value > 1 ? 's' : ''}</div>
+                      <div style={{fontSize: '10px'}} className='text-xs line-clamp-1'>Trivia • {d?.trivia_points} point{d?.trivia_points > 1 ? 's' : ''}</div>
                     </div>
                   </Link>
                 )}

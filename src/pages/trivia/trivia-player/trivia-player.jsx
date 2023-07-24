@@ -43,7 +43,7 @@ const TriviaPlayer = ({ className }) => {
     let selected = choices.find((d, i) => i === idx)
     answerMapper = {...answerMapper, [index]: selected?.text}
     if (selected?.text?.toLowerCase()?.includes(question?.answer?.toLowerCase())) {
-      pointMapper = {...pointMapper, [index]: trivia?.reward?.reward_value / trivia?.question?.length}
+      pointMapper = {...pointMapper, [index]: trivia?.trivia_points / trivia?.question?.length}
     } else {
       pointMapper = {...pointMapper, [index]: 0}
     }
@@ -91,7 +91,7 @@ const TriviaPlayer = ({ className }) => {
         <div className='w-full h-24 flex justify-end items-center mx-auto relative top-6 text-2xl font-bold'>
           <div className='bg-white bg-opacity-25 h-8 p-2 inline-flex justify-center items-center rounded-lg space-x-1'>
             <PointIcon />
-            <div className='font-extrabold text-sm'>{trivia?.reward?.reward_value ? Math.round(trivia?.reward?.reward_value / trivia?.question?.length) : 0}</div>
+            <div className='font-extrabold text-sm'>{trivia?.trivia_points ? Math.round(trivia?.trivia_points / trivia?.question?.length) : 0}</div>
           </div>
         </div>
         <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-16 justify-between'>
@@ -134,7 +134,7 @@ const TriviaPlayer = ({ className }) => {
                         dispatch(TriviaActions.submitTrivia({
                           score: Math.round(pointEarned),
                           surveyId: trivia?.id,
-                          rewardId: trivia?.reward?.id
+                          rewardId: 3
                         })).then(res => {
                           if (res) {
                             history.push(`/app/trivia-result/${Math.round(pointEarned)}`)

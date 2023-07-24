@@ -60,8 +60,8 @@ const TriviaHome = ({ className }) => {
                   <PointIcon />
                 </div>
                 <div className='flex items-center space-x-1'>
-                  <b>{trivia?.reward?.reward_value}</b>
-                  <span>point{trivia?.reward?.reward_value > 1 ? 's' : ''}</span>
+                  <b>{trivia?.trivia_points}</b>
+                  <span>point{trivia?.trivia_points > 1 ? 's' : ''}</span>
                 </div>
               </div>
 
