@@ -45,7 +45,7 @@ const AllGames = ({ className }) => {
         />
 
         <FadeIn className='grid grid-cols-2 gap-4'>
-          {triviaList ? (triviaList.length > 0 || games.length > 0) ? [...games, ...triviaList]?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.content?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
+          {triviaList ? (triviaList.length > 0 || games.length > 0) ? [...games, ...triviaList]?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.dataType?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
             return (
               <>
                 {d?.isGame ? (
