@@ -7,7 +7,7 @@ import NinjaTwo from '../../../assets/ninja-2.svg'
 import NinjaThree from '../../../assets/ninja-3.svg'
 import NinjaFour from '../../../assets/ninja-4.svg'
 import NinjaFive from '../../../assets/ninja-5.svg'
-import CaptainBones from '../../../assets/captain-bones.svg'
+import Captain from '../../../assets/captain-amaizing.png'
 import CurlyArrow from '../../../assets/curly-arrow.svg'
 
 import Button from '../../../components/button/button';
@@ -50,7 +50,7 @@ Join Captain Amaizing, a smart, fun-loving character who is passionate about hea
 
         <div className='h-90 sm:h-72 opacity-100 flex flex-col justify-end relative'>
 
-          <img className='w-32 absolute top-4' src={CaptainBones} alt="" />
+          <img className='w-32 absolute top-4' src={Captain} alt="" />
           <img className='w-20 absolute top-0 right-12' src={CurlyArrow} alt="" />
 
           <div style={{background: 'rgba(140, 197, 63, 0.8)', fontSize: '16px'}} className='rounded-3xl p-4 text-white font-semibold leading-6 tracking-wide curly bg-opacity-50 z-10 h-60 sm:h-auto overflow-auto text-sm'>
