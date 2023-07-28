@@ -4,6 +4,10 @@ export const retrieveAllTrivia = async () => {
   return http().get(`/amazing-day-campaign/trivia`);
 };
 
+export const retrieveAllGames = async () => {
+  return http().get(`/amazing-day-campaign/games`);
+};
+
 export const submitTrivia = async data => {
   return http().post(`/amazing-day-campaign/trivia-response`, data);
 };
@@ -18,6 +22,7 @@ export const retrieveLeaderboard = async (from, to) => {
 
 const TriviaService = {
   retrieveAllTrivia,
+  retrieveAllGames,
   submitTrivia,
   retrieveWinnings,
   retrieveLeaderboard,

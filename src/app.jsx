@@ -13,6 +13,7 @@ import InfoManager from './pages/3-info-manager';
 import Scanning from './pages/4-scanning';
 import Profile from './pages/5-profile'
 import Trivia from './pages/trivia'
+import Game from './pages/game'
 import NotFound from './pages/404-page';
 
 import { UserActions } from './states/actions';
@@ -83,7 +84,7 @@ function App() {
 
   useLayoutEffect(() => {
     let white = ['/app/leaderboard', '/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password']
-    let green = ['/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/my-account']
+    let green = ['/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/game-home/:id', '/app/game-result/:user_id/:points', '/app/my-account']
     let image = ['/', '/app/register', '/app/login']
     white.forEach(url => {
       if (url.toLocaleLowerCase() === location.pathname || location.pathname.includes('scan-result')) {
@@ -91,7 +92,7 @@ function App() {
       }
     })
     green.forEach(url => {
-      if (url.toLocaleLowerCase() === location.pathname || location.pathname.includes('trivia')) {
+      if (url.toLocaleLowerCase() === location.pathname || location.pathname.includes('trivia') || location.pathname.includes('game')) {
         setBackground('#479C46')
       }
     })
@@ -157,6 +158,9 @@ function App() {
                   <Route exact path={['/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points']}>
                     <Trivia />
                   </Route>
+                  <Route exact path={['/app/game-home/:id', '/app/game-result/:user_id/:points']}>
+                    <Game />
+                  </Route>
                   <Route
                     render={() => {
                       return (
@@ -168,7 +172,7 @@ function App() {
                   />
                 </Switch>
               }
-              <Route exact path={['/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password', '/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/my-account', '/', '/app/register', '/app/login']}>
+              <Route exact path={['/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password', '/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/game-home/:id', '/app/game-result/:user_id/:points', '/app/my-account', '/', '/app/register', '/app/login']}>
                 <a className='text-gray-300 hover:text-gray-300 no-underline' href="https://chekkitapp.com/">
                   <div className='flex justify-center p-1 pb-4'>
                     <div className='flex items-center space-x-1  justify-center'>

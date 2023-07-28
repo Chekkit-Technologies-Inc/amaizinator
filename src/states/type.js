@@ -9,6 +9,7 @@ export const LOGOUT = 'LOGOUT';
 
 // Trivia
 export const FETCH_TRIVIA = 'FETCH_TRIVIA';
+export const FETCH_GAMES = 'FETCH_GAMES';
 export const FETCH_WINNINGS = 'FETCH_WINNINGS';
 export const FETCH_LEADERBOARD = 'FETCH_LEADERBOARD';
 

@@ -66,7 +66,7 @@ export const getInitials = name => {
 };
 
 export const games = [
-  {title: '2048', dataType: 'game games', photo: Game2048, url: 'https://fmn-2048.vercel.app', isGame: true},
-  {title: 'Tic Tac Toe', dataType: 'game games', photo: TicTacToe, url: 'https://fmn-tic-tac-toe.vercel.app', isGame: true},
-  {title: 'Clumsy Bird', dataType: 'game games', photo: ClumsyBird, url: 'https://fmn-clumsy-bird.vercel.app', isGame: true}
+  {id: 1, title: '2048', dataType: 'game games', photo: Game2048, url: 'https://fmn-2048.vercel.app', isGame: true},
+  {id: 2,title: 'Tic Tac Toe', dataType: 'game games', photo: TicTacToe, url: 'https://fmn-tic-tac-toe.vercel.app', isGame: true},
+  {id: 3,title: 'Clumsy Bird', dataType: 'game games', photo: ClumsyBird, url: 'https://fmn-clumsy-bird.vercel.app', isGame: true}
 ]

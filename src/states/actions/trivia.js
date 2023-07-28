@@ -1,4 +1,4 @@
-import { FETCH_TRIVIA, FETCH_LEADERBOARD, FETCH_WINNINGS } from '../type';
+import { FETCH_TRIVIA, FETCH_GAMES, FETCH_LEADERBOARD, FETCH_WINNINGS } from '../type';
 
 import { TriviaService } from '../../services';
 import { notify, loading } from './response';
@@ -13,7 +13,6 @@ export const fetchTrivia = () => async dispatch => {
 
     dispatch({
       type: FETCH_TRIVIA,
-      // payload: res.data.data?.campaign?.reward.filter(d => d.reward_quantity > 0),
       payload: res?.data?.data,
     });
 
@@ -23,6 +22,32 @@ export const fetchTrivia = () => async dispatch => {
 
     dispatch({
       type: FETCH_TRIVIA,
+      payload: [],
+    });
+
+    return Promise.reject(err);
+  }
+};
+
+export const fetchGames = () => async dispatch => {
+  dispatch(loading({ loading: true }));
+
+  try {
+    const res = await TriviaService.retrieveAllGames();
+
+    dispatch(notify({ loading: false }));
+
+    dispatch({
+      type: FETCH_GAMES,
+      payload: res?.data?.data,
+    });
+
+    return Promise.resolve(res?.data?.data);
+  } catch (err) {
+    dispatch(notify({ loading: false }));
+
+    dispatch({
+      type: FETCH_GAMES,
       payload: [],
     });
 
@@ -101,6 +126,7 @@ export const fetchWinnings = (from, to) => async dispatch => {
 
 const TriviaActions = {
   fetchTrivia,
+  fetchGames,
   submitTrivia,
   fetchLeaderboard,
   fetchWinnings,

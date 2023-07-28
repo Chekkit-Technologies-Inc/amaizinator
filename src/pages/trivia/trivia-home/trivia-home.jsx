@@ -4,9 +4,9 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Countdown from "react-countdown";
 
-import {ReactComponent as BoxQuestion} from '../../../assets/box-question.svg'
 import ChatIcon from '../../../assets/chat.svg'
 import {ReactComponent as PointIcon} from '../../../assets/point.svg'
+import Bambi from '../../../assets/bambi.svg'
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
@@ -58,11 +58,16 @@ const TriviaHome = ({ className }) => {
         &larr;
       </div>
 
-      {/* <div className='font-bold text-lg mt-4'>{trivia?.title}</div> */}
-
       <div  className='flex flex-col flex-1 h-full'>
-        <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
+        {/* <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
           <BoxQuestion />
+
+        </div> */}
+        <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
+          <img className='h-24 w-24 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={trivia?.photo} alt="" onError={e => {
+            e.target.onerror = null;
+            e.target.src = Bambi;
+          }} />
         </div>
         <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
           <FadeIn className='space-y-6'>
