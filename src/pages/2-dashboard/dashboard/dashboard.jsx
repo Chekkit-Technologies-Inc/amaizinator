@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
+import { shuffle } from 'lodash';
 // import { useState} from 'react';
 // import Confetti from 'react-confetti'
 
@@ -126,7 +127,7 @@ const Dashboard = ({ className }) => {
           <Link to='/app/all-games' className='font-medium text-sm text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize'>View All Games</Link>
         </div>
         <FadeIn className='grid grid-cols-2 gap-4'>
-          {triviaList ? (triviaList.length > 0 || games.length > 0) ? [...games, ...triviaList].slice(0, 6).map((d, idx) => {
+          {triviaList ? (triviaList.length > 0 || games.length > 0) ? shuffle([...games, ...triviaList]).slice(0, 6).map((d, idx) => {
             return (
               <>
                 {d?.isGame ? (

@@ -3,6 +3,7 @@ import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Bambi from '../../../assets/bambi.svg'
 import { useSelector, useDispatch } from 'react-redux';
+import {shuffle} from 'lodash'
 
 import {IoClose} from 'react-icons/io5'
 
@@ -45,7 +46,7 @@ const AllGames = ({ className }) => {
         />
 
         <FadeIn className='grid grid-cols-2 gap-4'>
-          {triviaList ? (triviaList.length > 0 || games.length > 0) ? [...games, ...triviaList]?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.dataType?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
+          {triviaList ? (triviaList.length > 0 || games.length > 0) ? shuffle([...games, ...triviaList])?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.dataType?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
             return (
               <>
                 {d?.isGame ? (
