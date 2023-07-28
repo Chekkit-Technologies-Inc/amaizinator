@@ -148,7 +148,7 @@ const TriviaPlayer = ({ className }) => {
                 </div>
               )
                : (
-                <div className={'mb-8 text-center text-gray-500'}>Already played trivia</div>
+                <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold'}>Already played trivia</div>
               )}
             </FadeIn>}
           </div>
