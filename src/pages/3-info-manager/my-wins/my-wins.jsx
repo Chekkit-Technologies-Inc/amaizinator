@@ -82,7 +82,7 @@ const MyWins = ({ className }) => {
                   </div>
                   <div className='space-y-2 flex-1'>
                     <div className='font-semibold line-clamp-1'>{d?.survey?.title}</div>
-                    <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{format(parseISO(d?.survey?.created_at), 'dd-MM-yyyy, HH:mm a ')}</div>
+                    <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{d?.survey?.created_at ? format(parseISO(d?.survey?.created_at), 'dd-MM-yyyy, HH:mm a ') : ''}</div>
                   </div>
                 </div>
                 <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
