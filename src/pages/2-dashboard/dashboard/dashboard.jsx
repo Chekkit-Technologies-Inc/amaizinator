@@ -52,8 +52,12 @@ const Dashboard = ({ className }) => {
   };
 
   useEffect(() => {
-    dispatch(TriviaActions.fetchTrivia())
-    dispatch(TriviaActions.fetchGames())
+    if (!triviaList) {
+      dispatch(TriviaActions.fetchTrivia())
+    }
+    if (!games) {
+      dispatch(TriviaActions.fetchGames())
+    }
     dispatch(UserActions.fetchUserDetials())
     // eslint-disable-next-line
   }, [])
