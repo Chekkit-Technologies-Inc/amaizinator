@@ -110,7 +110,7 @@ const Dashboard = ({ className }) => {
 
           <Link to='/app/scan-tracker' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-pink_light hover:opacity-80 text-pink_dark hover:text-pink_dark no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly'>
             <img className='' src={ScanIcon} alt="" />
-            <div className='flex-shrink-0'>Scan Here</div>
+            <div style={{fontSize: '14px'}} className='flex-shrink-0'>Scan Receipt</div>
           </Link>
 
           <Link to='/app/leaderboard' className='inline-flex flex-col justify-center items-center font-semibold cursor-pointer p-4 rounded-2xl bg-cyan_light hover:opacity-80 text-cyan_dark hover:text-cyan_dark no-underline hover:no-underline capitalize w-28 h-28 text-base space-y-2 flex-shrink-0 text-center curly'>
