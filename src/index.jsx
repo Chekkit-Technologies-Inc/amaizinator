@@ -5,6 +5,7 @@ import './index.css';
 import 'react-phone-number-input/style.css';
 import App from './app';
 import 'rsuite/dist/rsuite.min.css';
+import 'animate.css';
 
 import { Provider } from 'react-redux';
 import store from './states/store';

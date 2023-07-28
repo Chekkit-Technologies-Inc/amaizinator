@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
 import { shuffle } from 'lodash';
+import { useInView } from 'react-intersection-observer';
 // import { useState} from 'react';
 // import Confetti from 'react-confetti'
 
@@ -29,6 +30,11 @@ const Dashboard = ({ className }) => {
   const dispatch = useDispatch()
   // const [showConfetti, setShowConfetti] = useState(false)
   useDocumentTitle('Dashboard')
+  const [isInView, setIsInView] = useState(false);
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
 
   const logout = () => {
     if (window.confirm('Logout ?')) {
