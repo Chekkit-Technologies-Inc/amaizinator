@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Countdown from "react-countdown";
 
 import {ReactComponent as BoxQuestion} from '../../../assets/box-question.svg'
 import ChatIcon from '../../../assets/chat.svg'
@@ -13,12 +14,21 @@ import {TriviaActions} from '../../../states/actions'
 
 import Button from '../../../components/button'
 
+const renderer = ({ minutes, seconds }) => {
+  return (
+    <span>
+      {minutes}:{seconds} {minutes > 0 ? 'mins' : 'secs'}
+    </span>
+  );
+};
+
 const TriviaHome = ({ className }) => {
   const {slug} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
   const {triviaList} = useSelector(state => state.trivia)
   const [trivia, setTrivia] = useState()
+  const [time, setTime] = useState()
   useDocumentTitle('Trivia')
 
   useEffect(() => {
@@ -35,6 +45,13 @@ const TriviaHome = ({ className }) => {
     // eslint-disable-next-line
   }, [slug, triviaList])
 
+  useEffect(() => {
+    if (trivia?.question?.length > 0) {
+      setTime(Date.now() + 5000 * trivia?.question?.length)
+    }
+    // eslint-disable-next-line
+  }, [trivia])
+
   return (
     <div className={`${className} flex-1 flex flex-col text-white  p-4`}>
       <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
@@ -49,10 +66,18 @@ const TriviaHome = ({ className }) => {
         </div>
         <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
           <FadeIn className='space-y-6'>
-            <div>
-              <div className='font-bold text-xs text-gray-400'>Trivia Title</div>
-              <div className='font-semibold'>{trivia?.title}</div>
-            </div>
+            <FadeIn className='flex items-start space-x-4 justify-between'>
+              <div>
+                <div className='font-bold text-xs text-gray-400'>Trivia Title</div>
+                <div className='font-semibold'>{trivia?.title}</div>
+              </div>
+              <div>
+                <div className='font-bold text-xs text-gray-400'>Time</div>
+                <div className='font-semibold'>
+                  {time && <Countdown autoStart={false} date={time} renderer={renderer} />}
+                </div>
+              </div>
+            </FadeIn>
 
             <div className='bg-green_lightx rounded-xl p-4 flex gap-4 overflow-auto no-scrollbar'>
               <div className='flex-1 flex justify-center items-center space-x-2'>

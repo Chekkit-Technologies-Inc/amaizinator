@@ -92,9 +92,7 @@ const TriviaPlayer = ({ className }) => {
 
   useEffect(() => {
     if (trivia?.question?.length > 0) {
-      setTimeout(() => {
-        setTime(Date.now() + 5000 * trivia?.question?.length)
-      }, 500);
+      setTime(Date.now() + 5000 * trivia?.question?.length)
     }
     // eslint-disable-next-line
   }, [trivia])
