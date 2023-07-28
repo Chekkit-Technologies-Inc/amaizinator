@@ -85,7 +85,10 @@ const TriviaHome = ({ className }) => {
           </FadeIn>
           <FadeIn>
             {!trivia?.isAlreadyTaken  ?<Button onClick={() => history.push(`/app/trivia-player/${slug}`)} className={'mb-8'} text='Play Trivia' /> : (
-              <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
+              <>
+                <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
+                <Button onClick={() => history.push('/app/dashboard')} className='-mt-4' text={'Goto Dashboard'} />
+              </>
             )}
           </FadeIn>
         </div>

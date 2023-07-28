@@ -129,7 +129,7 @@ const Dashboard = ({ className }) => {
         <FadeIn className='grid grid-cols-2 gap-4'>
           {triviaList ? (triviaList.length > 0 || games.length > 0) ? shuffle([...games, ...triviaList]).slice(0, 6).map((d, idx) => {
             return (
-              <>
+              <React.Fragment key={idx}>
                 {d?.isGame ? (
                   <a href={d.url} target='_self' rel="noreferrer" key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
                     <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
@@ -153,7 +153,7 @@ const Dashboard = ({ className }) => {
                     </div>
                   </Link>
                 )}
-              </>
+              </React.Fragment>
             )
           }) : (
             <div>No Games</div>
