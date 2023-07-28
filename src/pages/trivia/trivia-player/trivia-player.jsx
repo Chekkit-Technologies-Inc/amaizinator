@@ -98,7 +98,7 @@ const TriviaPlayer = ({ className }) => {
           <FadeIn className='space-y-6'>
             {trivia && <div className='space-y-2'>
               <div className='font-bold text-xs text-gray-400'>Question {index + 1} of {trivia?.question?.length}</div>
-              <div className='font-semibold'>{question?.content}</div>
+              <div className='font-semibold overflow-auto'>{question?.content}</div>
             </div>}
 
             {trivia?.question?.length > 0 && (
