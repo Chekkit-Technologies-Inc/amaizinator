@@ -152,12 +152,12 @@ const Leaderboard = ({ className }) => {
               <div></div>
             ) : <div></div>}
       </div>
-          <div className='flex justify-center p-1 pb-4'>
-            <div className='flex items-center space-x-1  justify-center'>
-              <span className='text-gray-300 text-xs font-bold'>Powered by</span>
-              <Logo className='text-black h-4 w-14'  />
-            </div>
-          </div>
+      <div className='flex justify-center p-1 pb-4'>
+        <div className='flex items-center space-x-1  justify-center'>
+          <span className='text-gray-300 text-xs font-bold'>Powered by</span>
+          <Logo className='text-black h-4 w-14'  />
+        </div>
+      </div>
       </div>
     </div>
   );

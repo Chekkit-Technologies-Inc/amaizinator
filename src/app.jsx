@@ -169,12 +169,14 @@ function App() {
                 </Switch>
               }
               <Route exact path={['/app/my-wins', '/app/scan-tracker', '/app/scan', '/app/scan-result/:unique_code/:points', '/app/update-profile', '/app/change-password', '/app/prizes', '/app/dashboard', '/app/all-games', '/app/trivia-home/:slug', '/app/trivia-player/:slug', '/app/trivia-result/:points', '/app/my-account', '/', '/app/register', '/app/login']}>
-                <div className='flex justify-center p-1 pb-4'>
-                  <div className='flex items-center space-x-1  justify-center'>
-                    <span className='text-gray-300 text-xs font-bold'>Powered by</span>
-                    <Logo className='text-black h-4 w-14'  />
+                <a className='text-gray-300 hover:text-gray-300 no-underline hover:no-underline' href="https://chekkitapp.com/">
+                  <div className='flex justify-center p-1 pb-4'>
+                    <div className='flex items-center space-x-1  justify-center'>
+                      <span className='text-gray-300 text-xs font-bold'>Powered by</span>
+                      <Logo className='text-black h-4 w-14'  />
+                    </div>
                   </div>
-                </div>
+                </a>
               </Route>
             </div>
           </div>
