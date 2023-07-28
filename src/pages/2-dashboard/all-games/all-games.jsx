@@ -18,7 +18,7 @@ const AllGames = ({ className }) => {
   const dispatch = useDispatch()
   const [phrase, setPhrase] = useState('')
   const {triviaList, games} = useSelector(state => state.trivia)
-  useDocumentTitle('All Games')
+  useDocumentTitle('All Trivia & Games')
 
   useEffect(() => {
     dispatch(TriviaActions.fetchTrivia())
@@ -34,7 +34,7 @@ const AllGames = ({ className }) => {
 
       <div className='space-y-6'>
 
-        <div className='font-semibold text-lg'>All Games</div>
+        <div className='font-semibold text-lg'>All Trivia & Games</div>
 
         <InputBox
           className={`bg-white text-gray-800`}

@@ -123,8 +123,8 @@ const Dashboard = ({ className }) => {
 
       <div className='space-y-3 p-4 pt-0'>
         <div className='flex items-center space-x-4 justify-between'>
-          <div className='font-semibold text-base'>Available Games</div>
-          <Link to='/app/all-games' className='font-medium text-sm text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize'>View All Games</Link>
+          <div className='font-semibold text-base'>Available Trivia & Games</div>
+          <Link to='/app/all-games' className='font-medium text-sm text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize'>View All</Link>
         </div>
         <FadeIn className='grid grid-cols-2 gap-4'>
           {triviaList ? (triviaList.length > 0 || games.length > 0) ? shuffle([...games, ...triviaList]).slice(0, 6).map((d, idx) => {
