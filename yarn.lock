@@ -10743,6 +10743,13 @@ react-confetti@^6.1.0:
   dependencies:
     tween-functions "^1.2.0"
 
+react-countdown@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.3.5.tgz#70c035b5cbc7e8fdb4ad91fe5f44afd7a7933a68"
+  integrity sha512-K26ENYEesMfPxhRRtm1r+Pf70SErrvW3g4CArLi/x6MPFjgfDFYePT4UghEj8p2nI0cqVV7/JjDgjyr//U60Og==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-custom-roulette@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-custom-roulette/-/react-custom-roulette-1.2.0.tgz#c2fe73fcc243c24cf8c05f1704a8c5a67b77ca7a"

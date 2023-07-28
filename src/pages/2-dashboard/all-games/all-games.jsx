@@ -19,9 +19,18 @@ const AllGames = ({ className }) => {
   const [phrase, setPhrase] = useState('')
   const {triviaList, games} = useSelector(state => state.trivia)
   useDocumentTitle('All Trivia & Games')
+  const [gamesAndTrivias, setGamesAndTrivias] = useState();
 
   useEffect(() => {
-    dispatch(TriviaActions.fetchTrivia())
+    if (triviaList && games && (triviaList.length > 0 || games.length > 0)) {
+      setGamesAndTrivias(shuffle([...games, ...triviaList]))
+    }
+  }, [triviaList, games])
+
+  useEffect(() => {
+    if (!triviaList) {
+      dispatch(TriviaActions.fetchTrivia())
+    }
     dispatch(UserActions.fetchUserDetials())
     // eslint-disable-next-line
   }, [])
@@ -46,7 +55,7 @@ const AllGames = ({ className }) => {
         />
 
         <FadeIn className='grid grid-cols-2 gap-4'>
-          {triviaList ? (triviaList.length > 0 || games.length > 0) ? shuffle([...games, ...triviaList])?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.dataType?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
+          {gamesAndTrivias ? gamesAndTrivias.length > 0 ? gamesAndTrivias?.filter(d => d?.title?.toLowerCase()?.includes(phrase?.toLowerCase()) || d?.dataType?.toLowerCase()?.includes(phrase?.toLowerCase())).map((d, idx) => {
             return (
               <React.Fragment key={idx}>
                 {d?.isGame ? (

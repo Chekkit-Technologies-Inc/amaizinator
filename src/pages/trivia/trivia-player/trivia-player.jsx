@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import {shuffle} from 'lodash'
+import Countdown from "react-countdown";
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 import {ReactComponent as PointIcon} from '../../../assets/point.svg'
@@ -15,6 +17,24 @@ const abc =['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 let answerMapper = {}
 let pointMapper = {}
 
+// Random component
+const Completionist = () => <span>Time up!</span>;
+
+// Renderer callback with condition
+const renderer = ({ minutes, seconds, completed }) => {
+  if (completed) {
+    // Render a complete state
+    return <Completionist />;
+  } else {
+    // Render a countdown
+    return (
+      <span>
+        {minutes}:{seconds}
+      </span>
+    );
+  }
+};
+
 const TriviaPlayer = ({ className }) => {
   const {slug} = useParams()
   const history = useHistory()
@@ -24,6 +44,8 @@ const TriviaPlayer = ({ className }) => {
   const [question, setQuestion] = useState({})
   const [choices, setChoices] = useState([])
   const [index, setIndex] = useState(0)
+  // eslint-disable-next-line
+  const [time, setTime] = useState()
   useDocumentTitle('Trivia')
 
   useEffect(() => {
@@ -53,7 +75,10 @@ const TriviaPlayer = ({ className }) => {
     if (triviaList) {
       // eslint-disable-next-line
       let t = triviaList.find(d => d.slug == slug);
-      if (t) setTrivia(t);
+      if (t) {
+        let qs = shuffle(t?.question)
+        setTrivia({...t, question: qs})
+      };
     }
     // eslint-disable-next-line
   }, [slug, triviaList])
@@ -66,18 +91,49 @@ const TriviaPlayer = ({ className }) => {
   }, [index, trivia])
 
   useEffect(() => {
+    if (trivia?.question?.length > 0) {
+      setTimeout(() => {
+        setTime(Date.now() + 5000 * trivia?.question?.length)
+      }, 500);
+    }
+    // eslint-disable-next-line
+  }, [trivia])
+
+  useEffect(() => {
     if (question?.choices) {
-      setChoices(JSON.parse(question?.choices).map(d => {
+      setChoices(shuffle(JSON.parse(question?.choices).map(d => {
         if (answerMapper[index] === d.text) {
           d.selected = true
           return d
         }
         d.selected = false
         return d
-      }))
+      })))
     }
     // eslint-disable-next-line
   }, [question])
+
+  const registerScore = () => {
+    let pointEarned = Object.keys(pointMapper).reduce((p, n) => {
+      return p + pointMapper[n]
+    }, 0)
+    dispatch(TriviaActions.submitTrivia({
+      score: Math.round(pointEarned),
+      surveyId: trivia?.id
+    })).then(res => {
+      if (res) {
+        history.push(`/app/trivia-result/${Math.round(pointEarned)}`)
+      }
+    })
+  }
+
+  const onSubmit = () => {
+    if (index + 1 === trivia?.question?.length) {
+      registerScore()
+    } else {
+      setIndex(i => i + 1)
+    }
+  }
 
   return (
     <div className={`${className} flex-1 flex flex-col text-white  p-4`}>
@@ -88,7 +144,10 @@ const TriviaPlayer = ({ className }) => {
       <div className='font-bold text-lg mt-4'>{trivia?.title}</div>
 
       <div  className='flex flex-col flex-1 h-full'>
-        <div className='w-full h-24 flex justify-end items-center mx-auto relative top-6 text-2xl font-bold'>
+        <div className='w-full h-24 flex justify-between items-center space-x-4 mx-auto relative top-6 text-2xl font-bold'>
+          <div>
+            {time && <Countdown onComplete={registerScore} date={time} renderer={renderer} />}
+          </div>
           <div className='bg-white bg-opacity-25 h-8 p-2 inline-flex justify-center items-center rounded-lg space-x-1'>
             <PointIcon />
             <div className='font-extrabold text-sm'>{trivia?.trivia_points ? Math.round(trivia?.trivia_points / trivia?.question?.length) : 0}</div>
@@ -126,24 +185,7 @@ const TriviaPlayer = ({ className }) => {
             {trivia && <FadeIn>
               {!trivia?.isAlreadyTaken  ? (
                 <div className='space-y-4'>
-                  <Button className={answerMapper[index] ? '' : 'pointer-events-none opacity-50'} onClick={() => {
-                      if (index + 1 === trivia?.question?.length) {
-                        let pointEarned = Object.keys(pointMapper).reduce((p, n) => {
-                          return p + pointMapper[n]
-                        }, 0)
-                        dispatch(TriviaActions.submitTrivia({
-                          score: Math.round(pointEarned),
-                          surveyId: trivia?.id,
-                          rewardId: 3
-                        })).then(res => {
-                          if (res) {
-                            history.push(`/app/trivia-result/${Math.round(pointEarned)}`)
-                          }
-                        })
-                      } else {
-                        setIndex(i => i + 1)
-                      }
-                    }} text={index + 1 === trivia?.question?.length ? `Submit` : `Next Question`} />
+                  <Button className={answerMapper[index] ? '' : 'pointer-events-none opacity-50'} onClick={onSubmit} text={index + 1 === trivia?.question?.length ? `Submit` : `Next Question`} />
                   {index > 0 && <div onClick={() => setIndex(i => i - 1)} className='text-center p-4 rounded-2xl text-base font-semibold cursor-pointer text-green_dark bg-gray-200'>Previous Question</div>}
                 </div>
               )
