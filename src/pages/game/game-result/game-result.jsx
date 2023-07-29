@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector } from 'react-redux';
 import { RWebShare } from 'react-web-share';
+import CryptoJS from 'crypto-js'
 
 import Button from '../../../components/button/button';
 import {ReactComponent as Congratulations} from '../../../assets/congratulations.svg'
@@ -12,15 +13,35 @@ import useDocumentTitle from '../../../hooks/use-document-title';
 
 
 const GameResult = ({ className }) => {
-  const {points, user_id} = useParams()
+  const {hash} = useParams()
   const history = useHistory()
   const user = useSelector(state => state.user)
+  const [points, setPoints] = useState(0)
+  const [userId, setUserId] = useState(0)
   useDocumentTitle('Result')
 
   useEffect(() => {
-    console.log('user_id', user_id)
-    console.log('points', points)
-  }, [user_id, points])
+    console.log('hash', hash)
+    if (hash && CryptoJS) {
+      let encrypted = hash.replaceAll('CHAFMN', '/')
+      let decrypted = CryptoJS.AES.decrypt(encrypted, 'chekkit-fmn-secret');
+      let string = decrypted.toString(CryptoJS.enc.Utf8)
+      let arr = string.split('&')
+      if (arr[0]) {
+        setUserId(arr[0])
+      }
+      if (arr[1]) {
+        setPoints(arr[1])
+      }
+    }
+    // eslint-disable-next-line
+  }, [hash, CryptoJS])
+
+  useEffect(() => {
+    if (userId) {
+      console.log('userId', userId)
+    }
+  }, [userId])
 
   return (
     <FadeIn className={`${className} flex-1 p-4 flex flex-col justify-center text-gray-800`}>

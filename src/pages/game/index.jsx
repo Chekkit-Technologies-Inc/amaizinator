@@ -14,7 +14,7 @@ const routes = [
   },
   {
     name: 'GameResult',
-    path: '/app/game-result/:user_id/:points',
+    path: '/app/game-result/:hash',
     component: GameResult,
     current: false,
   }
