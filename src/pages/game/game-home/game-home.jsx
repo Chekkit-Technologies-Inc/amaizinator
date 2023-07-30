@@ -64,7 +64,7 @@ const GameHome = ({ className }) => {
             </FadeIn>
 
             <div>
-              <div className='font-bold text-xs text-gray-400'>Instructions</div>
+              <div className='font-bold text-xs text-gray-400'>Description</div>
               <div className='text-xs'>{game?.description}</div>
             </div>
 
