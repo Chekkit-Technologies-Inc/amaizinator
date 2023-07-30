@@ -72,6 +72,15 @@ export const submitTrivia = (data) => async dispatch => {
   }
 };
 
+export const saveHash = (hash) => async () => {
+  try {
+    const res = await TriviaService.saveHash(hash);
+    return Promise.resolve(res?.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
 export const fetchLeaderboard = (from, to) => async dispatch => {
   dispatch(loading({ loading: true }));
 
@@ -128,6 +137,7 @@ const TriviaActions = {
   fetchTrivia,
   fetchGames,
   submitTrivia,
+  saveHash,
   fetchLeaderboard,
   fetchWinnings,
 };

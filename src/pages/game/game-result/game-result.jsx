@@ -13,6 +13,7 @@ import {ReactComponent as ShareIcon} from '../../../assets/share.svg'
 import useDocumentTitle from '../../../hooks/use-document-title';
 
 import {UserActions, TriviaActions} from '../../../states/actions'
+// import {ResponseActions} from '../../../states/actions'
 
 const GameResult = ({ className }) => {
   const {hash} = useParams()
@@ -92,6 +93,13 @@ const GameResult = ({ className }) => {
 
   useEffect(() => {
     if (points && gameId && userId && user?.id && game && !success && currentHash && Number(user?.id) === Number(userId)) {
+      // dispatch(TriviaActions.saveHash(currentHash)).then(res => {
+      //   if (res) {
+      //     // do that
+      //   }
+      // }).catch(err => {
+      //   dispatch(ResponseActions.notify({ title: "", message: err.response?.data?.message || err.message || 'Score already recorded', type: 'error', loading: false }));
+      // })
       setCurrentHash(null)
       dispatch(TriviaActions.submitTrivia({
         score: Number(points) > game?.points ? game?.points : Number(points),

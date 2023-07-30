@@ -12,6 +12,10 @@ export const submitTrivia = async data => {
   return http().post(`/amazing-day-campaign/trivia-response`, data);
 };
 
+export const saveHash = async hash => {
+  return http().post(`/amazing-day-campaign/trivia-respons`, {hash: hash});
+};
+
 export const retrieveWinnings = async (from, to) => {
   return http().get(`/amazing-day-campaign/winngs?fromDate=${from}&toDate=${to}`);
 };
@@ -24,6 +28,7 @@ const TriviaService = {
   retrieveAllTrivia,
   retrieveAllGames,
   submitTrivia,
+  saveHash,
   retrieveWinnings,
   retrieveLeaderboard,
 };
