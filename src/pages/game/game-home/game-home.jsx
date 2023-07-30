@@ -1,11 +1,9 @@
 import React, {useEffect, useState, useLayoutEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import useDocumentTitle from '../../../hooks/use-document-title';
-
-import {TriviaActions} from '../../../states/actions'
 
 import Button from '../../../components/button'
 
@@ -14,7 +12,6 @@ import Bambi from '../../../assets/bambi.svg'
 const GameHome = ({ className }) => {
   const {id} = useParams()
   const history = useHistory()
-  const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const {games} = useSelector(state => state.trivia)
   const [game, setGame] = useState()
@@ -26,11 +23,6 @@ const GameHome = ({ className }) => {
     }
     // eslint-disable-next-line
   }, [user]);
-
-  useEffect(() => {
-    dispatch(TriviaActions.fetchGames())
-    // eslint-disable-next-line
-  }, [])
 
   useEffect(() => {
     if (games) {

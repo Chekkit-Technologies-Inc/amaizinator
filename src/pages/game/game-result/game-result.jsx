@@ -22,8 +22,27 @@ const GameResult = ({ className }) => {
   const [points, setPoints] = useState()
   const [userId, setUserId] = useState()
   const [gameId, setGameId] = useState()
+  const [currentHash, setCurrentHash] = useState()
+  const {games} = useSelector(state => state.trivia)
+  const [game, setGame] = useState()
   const [success, setSuccess] = useState(false)
   useDocumentTitle('Result')
+
+  useEffect(() => {
+    if (game) {
+      console.log('game', game)
+    }
+    // eslint-disable-next-line
+  }, [game])
+
+  useEffect(() => {
+    if (games && gameId) {
+      // eslint-disable-next-line
+      let g = games.find(d => d.id == gameId);
+      if (g) setGame(g);
+    }
+    // eslint-disable-next-line
+  }, [gameId, games])
 
   useLayoutEffect(() => {
     if (!user?.token && hash) {
@@ -35,19 +54,28 @@ const GameResult = ({ className }) => {
 
   useEffect(() => {
     if (hash && CryptoJS && user?.id) {
+      setCurrentHash(hash)
       let encrypted = hash.replaceAll('CHAFMN', '/')
       let decrypted = CryptoJS.AES.decrypt(encrypted, 'chekkit-fmn-secret');
       let string = decrypted.toString(CryptoJS.enc.Utf8)
       let arr = string.split('&')
+
       if (arr[0]) {
         setUserId(arr[0])
       }
+
       if (arr[1]) {
         setPoints(arr[1])
       }
+
       if (arr[2]) {
         setGameId(arr[2])
       }
+
+      // if (arr[3]) {
+      //   console.log('time', arr[3])
+      // }
+
     }
     // eslint-disable-next-line
   }, [hash, CryptoJS, user?.id])
@@ -63,17 +91,19 @@ const GameResult = ({ className }) => {
   }, [userId, user?.id, hash])
 
   useEffect(() => {
-    if (points && gameId && userId && user?.id && Number(user?.id) === Number(userId))
-    dispatch(TriviaActions.submitTrivia({
-      score: Math.round(points),
-      gameId: Number(gameId)
-    })).then(res => {
-      if (res) {
-        setSuccess(true)
-      }
-    })
+    if (points && gameId && userId && user?.id && game && !success && currentHash && Number(user?.id) === Number(userId)) {
+      setCurrentHash(null)
+      dispatch(TriviaActions.submitTrivia({
+        score: game?.points ? game?.points : 0,
+        gameId: Number(gameId)
+      })).then(res => {
+        if (res) {
+          setSuccess(true)
+        }
+      })
+    }
     // eslint-disable-next-line
-  }, [points, gameId, userId, user?.id])
+  }, [points, gameId, userId, user?.id, game])
 
 
   return (
@@ -91,13 +121,13 @@ const GameResult = ({ className }) => {
           <div style={{height: '400px'}} className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 text-center flex flex-col w-72 mx-auto py-8 pt-14 space-y-4 justify-between'>
             <div className='space-y-4'>
               <div className='font-semibold text-3xl'>Good job, {user?.first_name}!</div>
-              <div className='text-gray-800 font-medium'>You just won <b>{points}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
+              <div className='text-gray-800 font-medium'>You just won <b>{game?.points ? game?.points : 0}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
             </div>
             <div className='space-y-6'>
               <Button onClick={() => history.push('/app/leaderboard')} text={'Goto Leaderboard'} />
                 <RWebShare
                   data={{
-                    text: `${user?.first_name} just won ${points} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
+                    text: `${user?.first_name} just won ${game?.points ? game?.points : 0} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
                     url: window.location.href,
                     title: `Congratulations ${user?.first_name}!`,
                   }}
