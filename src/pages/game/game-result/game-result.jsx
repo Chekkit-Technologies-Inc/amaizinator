@@ -94,7 +94,7 @@ const GameResult = ({ className }) => {
     if (points && gameId && userId && user?.id && game && !success && currentHash && Number(user?.id) === Number(userId)) {
       setCurrentHash(null)
       dispatch(TriviaActions.submitTrivia({
-        score: game?.points ? game?.points : 0,
+        score: Number(points) > game?.points ? game?.points : points,
         gameId: Number(gameId)
       })).then(res => {
         if (res) {
@@ -121,13 +121,13 @@ const GameResult = ({ className }) => {
           <div style={{height: '400px'}} className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 text-center flex flex-col w-72 mx-auto py-8 pt-14 space-y-4 justify-between'>
             <div className='space-y-4'>
               <div className='font-semibold text-3xl'>Good job, {user?.first_name}!</div>
-              <div className='text-gray-800 font-medium'>You just won <b>{game?.points ? game?.points : 0}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
+              <div className='text-gray-800 font-medium'>You just won <b>{Number(points) > game?.points ? game?.points : points}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
             </div>
             <div className='space-y-6'>
               <Button onClick={() => history.push('/app/leaderboard')} text={'Goto Leaderboard'} />
                 <RWebShare
                   data={{
-                    text: `${user?.first_name} just won ${game?.points ? game?.points : 0} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
+                    text: `${user?.first_name} just won ${Number(points) > game?.points ? game?.points : points} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
                     url: window.location.href,
                     title: `Congratulations ${user?.first_name}!`,
                   }}

@@ -56,7 +56,7 @@ const GameHome = ({ className }) => {
                 <div className='font-semibold'>{game?.title}</div>
               </div>
               <div>
-                <div className='font-bold text-xs text-gray-400'>Points</div>
+                <div className='font-bold text-xs text-gray-400'>Max Points</div>
                 <div className='flex items-center space-x-1 font-semibold'>
                   {game?.points}
                 </div>
