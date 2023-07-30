@@ -40,8 +40,14 @@ function App() {
   }, [user])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    let s = `#home`;
+    setTimeout(() => {
+      let el = document.querySelector(s);
+      if (el) {
+        el.scrollIntoView();
+      }
+    }, 0);
+  }, [location.pathname])
 
   useEffect(() => {
     if (CryptoJS && user?.id) {
@@ -157,7 +163,7 @@ function App() {
 
           <div style={{backgroundColor: background}} className={`h-full overflow-auto ${background}`}>
             <div className='w-full h-full flex flex-col max-w-md mx-auto relative'>
-              <div className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
+              <div id='home' className='font-semibold text-lg cursor-pointer bg-gray-600 text-gray-300 bg-opacity-10 w-8 h-8 rounded-lg flex justify-center items-center -mb-2 mx-4 p-1 mt-4 z-50' onClick={() => history.push('/')}>
                 <Home className='cursor-pointer' size={24} />
               </div>
               {!userLoading &&

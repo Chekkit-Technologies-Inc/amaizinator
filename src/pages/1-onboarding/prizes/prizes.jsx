@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { Carousel } from 'rsuite';
@@ -21,19 +21,8 @@ const Prizes = ({ className }) => {
   const history = useHistory()
   useDocumentTitle('Prizes')
 
-  useEffect(() => {
-    let s = `#top`;
-    setTimeout(() => {
-      let el = document.querySelector(s);
-      if (el) {
-        el.scrollIntoView();
-      }
-    }, 0);
-  }, [])
-
   return (
     <div className={`${className} flex-1 p-4 flex flex-col text-white`}>
-      <div id='top'></div>
       <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
         &larr;
       </div>
