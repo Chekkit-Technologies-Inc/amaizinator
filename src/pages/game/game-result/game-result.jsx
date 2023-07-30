@@ -94,7 +94,7 @@ const GameResult = ({ className }) => {
     if (points && gameId && userId && user?.id && game && !success && currentHash && Number(user?.id) === Number(userId)) {
       setCurrentHash(null)
       dispatch(TriviaActions.submitTrivia({
-        score: Number(points) > game?.points ? game?.points : points,
+        score: Number(points) > game?.points ? game?.points : Number(points),
         gameId: Number(gameId)
       })).then(res => {
         if (res) {
