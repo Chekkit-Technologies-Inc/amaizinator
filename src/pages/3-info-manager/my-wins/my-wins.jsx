@@ -70,30 +70,30 @@ const MyWins = ({ className }) => {
       </FadeIn>
       <PointCard point={winnings?.total_points?.points} />
       <div className='space-y-4'>
-      {winnings?.winngs ? winnings?.winngs?.length > 0 ? winnings?.winngs?.map((d, idx) => {
-            return (
-              <div key={idx} className='flex items-center space-x-4 bg-green_lightx rounded-2xl p-3'>
-                <div className='flex items-center space-x-4 flex-1'>
-                  <div className='h-14 w-14 rounded-2xl bg-green_lightx'>
-                    <img className='h-14 w-14 object-cover object-top rounded-2xl' src={d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
-                      e.target.onerror = null;
-                      e.target.src = Bambi;
-                    }} alt="" />
-                  </div>
-                  <div className='space-y-2 flex-1'>
-                    <div className='font-semibold line-clamp-1'>{d?.survey?.title}</div>
-                    <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{d?.created_at ? format(parseISO(d?.created_at), 'dd-MM-yyyy, HH:mm a ') : ''}</div>
-                  </div>
+        {winnings?.winngs ? winnings?.winngs?.length > 0 ? winnings?.winngs?.map((d, idx) => {
+          return (
+            <div key={idx} className='flex items-center space-x-4 bg-green_lightx rounded-2xl p-3'>
+              <div className='flex items-center space-x-4 flex-1'>
+                <div className='h-14 w-14 rounded-2xl bg-green_lightx'>
+                  <img className='h-14 w-14 object-cover object-top rounded-2xl' src={d?.game?.photo ? d?.game?.photo ? d?.game?.photo : d?.game?.photo === null ? Bambi : d?.game?.photo : d?.survey?.photo ? d?.survey?.photo : d?.survey?.photo === null ? Bambi : d?.survey?.photo} onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = Bambi;
+                  }} alt="" />
                 </div>
-                <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
-                <img className='w-4' src={PointIcon} alt="" />
-                  <div>+ {d?.reward_value}</div>
+                <div className='space-y-2 flex-1'>
+                  <div className='font-semibold line-clamp-1'>{d?.game ? d?.game?.title : d?.survey?.title}</div>
+                  <div style={{fontSize: '10px'}} className='text-xs text-gray-400 font-medium'>{d?.created_at ? format(parseISO(d?.created_at), 'dd-MM-yyyy, HH:mm a ') : ''}</div>
                 </div>
               </div>
-            )
-          }) : (
-            <div>No winnings</div>
-          ) : <div>Loading...</div>}
+              <div className='flex items-center space-x-1 bg-white rounded-2xl p-2 text-xs font-semibold text-yellow_dark'>
+              <img className='w-4' src={PointIcon} alt="" />
+                <div>+ {d?.reward_value}</div>
+              </div>
+            </div>
+          )
+        }) : (
+          <div>No winnings</div>
+        ) : <div>Loading...</div>}
       </div>
     </FadeIn>
   );
