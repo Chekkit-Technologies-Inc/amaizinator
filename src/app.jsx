@@ -40,6 +40,10 @@ function App() {
   }, [user])
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     if (CryptoJS && user?.id) {
       let hash = JSON.parse(localStorage.getItem('hash'));
       if (hash) {
