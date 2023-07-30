@@ -6,6 +6,7 @@ import { CgSpinner } from 'react-icons/cg';
 import {ReactComponent as Logo} from './assets/logo.svg'
 import {HiHome as Home} from 'react-icons/hi'
 import BarLoader from "react-spinners/BarLoader"
+import CryptoJS from 'crypto-js'
 
 import Onboarding from './pages/1-onboarding';
 import Dashboard from './pages/2-dashboard';
@@ -37,6 +38,23 @@ function App() {
   useEffect(() => {
     console.log('user', user)
   }, [user])
+
+  useEffect(() => {
+    if (CryptoJS && user?.id) {
+      let hash = JSON.parse(localStorage.getItem('hash'));
+      if (hash) {
+        let encrypted = hash.replaceAll('CHAFMN', '/')
+        let decrypted = CryptoJS.AES.decrypt(encrypted, 'chekkit-fmn-secret');
+        let string = decrypted.toString(CryptoJS.enc.Utf8)
+        let arr = string.split('&')
+        if (Number(arr[0]) === Number(user?.id)) {
+          localStorage.removeItem('hash')
+          history.push(`/app/game-result/${hash}`)
+        }
+      }
+    }
+    // eslint-disable-next-line
+  }, [CryptoJS, user?.id])
 
   useEffect(() => {
     let userDetail = JSON.parse(localStorage.getItem('user'));

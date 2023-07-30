@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RWebShare } from 'react-web-share';
 import CryptoJS from 'crypto-js'
+import { CgSpinner } from 'react-icons/cg';
 
 import Button from '../../../components/button/button';
 import {ReactComponent as Congratulations} from '../../../assets/congratulations.svg'
@@ -11,18 +12,29 @@ import {ReactComponent as ShareIcon} from '../../../assets/share.svg'
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
+import {UserActions, TriviaActions} from '../../../states/actions'
 
 const GameResult = ({ className }) => {
   const {hash} = useParams()
   const history = useHistory()
+  const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const [points, setPoints] = useState(0)
-  const [userId, setUserId] = useState(0)
+  const [points, setPoints] = useState()
+  const [userId, setUserId] = useState()
+  const [gameId, setGameId] = useState()
+  const [success, setSuccess] = useState(false)
   useDocumentTitle('Result')
 
+  useLayoutEffect(() => {
+    if (!user?.token && hash) {
+      localStorage.setItem('hash', JSON.stringify(hash))
+      history.push('/app/login');
+    }
+    // eslint-disable-next-line
+  }, [user, hash]);
+
   useEffect(() => {
-    console.log('hash', hash)
-    if (hash && CryptoJS) {
+    if (hash && CryptoJS && user?.id) {
       let encrypted = hash.replaceAll('CHAFMN', '/')
       let decrypted = CryptoJS.AES.decrypt(encrypted, 'chekkit-fmn-secret');
       let string = decrypted.toString(CryptoJS.enc.Utf8)
@@ -33,20 +45,46 @@ const GameResult = ({ className }) => {
       if (arr[1]) {
         setPoints(arr[1])
       }
+      if (arr[2]) {
+        setGameId(arr[2])
+      }
     }
     // eslint-disable-next-line
-  }, [hash, CryptoJS])
+  }, [hash, CryptoJS, user?.id])
 
   useEffect(() => {
-    if (userId) {
-      console.log('userId', userId)
+    if (userId && user?.id && hash) {
+      if (Number(user?.id) !== Number(userId)) {
+        localStorage.setItem('hash', JSON.stringify(hash))
+        dispatch(UserActions.logout())
+      }
     }
-  }, [userId])
+    // eslint-disable-next-line
+  }, [userId, user?.id, hash])
+
+  useEffect(() => {
+    if (points && gameId && userId && user?.id && Number(user?.id) === Number(userId))
+    dispatch(TriviaActions.submitTrivia({
+      score: Math.round(points),
+      gameId: Number(gameId)
+    })).then(res => {
+      if (res) {
+        setSuccess(true)
+      }
+    })
+    // eslint-disable-next-line
+  }, [points, gameId, userId, user?.id])
+
 
   return (
     <FadeIn className={`${className} flex-1 p-4 flex flex-col justify-center text-gray-800`}>
 
-      <div className='-space-y-8'>
+      {(!points && points !== 0) || !hash || Number(user?.id) !== Number(userId) || !success ? (
+        <div className={`absolute top-0 bottom-0 left-0 right-0 z-20 flex justify-center items-center`}>
+          <CgSpinner className={`text-yellow_dark animate-spin`} size={64} />
+        </div>
+      ) : (
+        <div className='-space-y-8'>
           <div className='h-52 z-50'>
             <Congratulations alt='' className='w-full' />
           </div>
@@ -71,7 +109,9 @@ const GameResult = ({ className }) => {
                 </RWebShare>
             </div>
           </div>
-      </div>
+        </div>
+      )}
+
     </FadeIn>
   );
 };

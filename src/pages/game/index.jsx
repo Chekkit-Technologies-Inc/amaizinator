@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Route, Switch, Redirect, useLocation, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 
 import GameHome from './game-home';
 import GameResult from './game-result';
@@ -21,17 +20,8 @@ const routes = [
 ];
 
 const Index = () => {
-  const history = useHistory()
   const location = useLocation();
   const [items, setItems] = useState(routes);
-  const user = useSelector(state => state.user);
-
-  useLayoutEffect(() => {
-    if (!user?.token) {
-      history.push('/app/login');
-    }
-    // eslint-disable-next-line
-  }, [user]);
 
   useEffect(() => {
     let arr = location.pathname.split('/');

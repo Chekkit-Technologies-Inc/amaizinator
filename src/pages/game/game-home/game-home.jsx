@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,6 +19,13 @@ const GameHome = ({ className }) => {
   const {games} = useSelector(state => state.trivia)
   const [game, setGame] = useState()
   useDocumentTitle('Game')
+
+  useLayoutEffect(() => {
+    if (!user?.token) {
+      history.push('/app/login');
+    }
+    // eslint-disable-next-line
+  }, [user]);
 
   useEffect(() => {
     dispatch(TriviaActions.fetchGames())
@@ -75,7 +82,7 @@ const GameHome = ({ className }) => {
           <FadeIn>
             <Button onClick={() => {
               if (game?.url) {
-                window.open(game?.url + `/?${user?.id}`, '_self')
+                window.open(game?.url + `/?${user?.id}&${game?.id}`, '_self')
               }
             }} className={'mb-8'} text='Play Game' />
           </FadeIn>
