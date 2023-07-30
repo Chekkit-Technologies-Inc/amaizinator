@@ -7,8 +7,8 @@
 
 
 // azurewebsites.net
-export const apiUrlAuth = 'http://chekkitciprod.azurewebsites.net/api/v2/auth';
-export const apiUrl = 'http://chekkitciprod.azurewebsites.net/api/v2';
+export const apiUrlAuth = 'https://chekkitciprod.azurewebsites.net/api/v2/auth';
+export const apiUrl = 'https://chekkitciprod.azurewebsites.net/api/v2';
 
-// export const apiUrlAuth = 'http://chekkitcidev.azurewebsites.net/api/v2/auth';
-// export const apiUrl = 'http://chekkitcidev.azurewebsites.net/api/v2';
+// export const apiUrlAuth = 'https://chekkitcidev.azurewebsites.net/api/v2/auth';
+// export const apiUrl = 'https://chekkitcidev.azurewebsites.net/api/v2';
