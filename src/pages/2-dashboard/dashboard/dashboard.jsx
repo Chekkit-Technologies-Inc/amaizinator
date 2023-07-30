@@ -39,7 +39,7 @@ const Dashboard = ({ className }) => {
 
   useEffect(() => {
     if (triviaList && games && (triviaList.length > 0 || games.length > 0)) {
-      setGamesAndTrivias(shuffle([...games, ...triviaList]).slice(0, 6))
+      setGamesAndTrivias(shuffle([...games.filter(d => !d?.title?.toLowerCase()?.includes('tic')).filter(d => !d?.title?.toLowerCase()?.includes('clumsy')), ...triviaList]).slice(0, 6))
     }
   }, [triviaList, games])
 
