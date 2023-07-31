@@ -40,7 +40,7 @@ const Welcome = ({ className }) => {
       </FadeIn>
       <div className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 pt-0 text-center flex flex-col'>
         <FadeIn className='mt-12 curly font-semibold text-gray-800'>
-          <div className='text-base'>Welcome, Amaizinator!</div>
+          <div className='text-xl font-extrabold text-green_dark'>Welcome, Amaizinator!</div>
           <div className='leading-6 tracking-wide text-sm'>
 Join Captain Amaizing, a smart, fun-loving character who is passionate about health and inspiring kids like you to become Amaizing! With the Power of 4 in the Amaizing Day Cereal as his superpower, Captain Amaizing is here to guide you on an exciting journey.</div>
           <div className='leading-6 tracking-wide pt-2 text-sm'>
