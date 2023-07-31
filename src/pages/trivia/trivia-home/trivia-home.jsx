@@ -49,7 +49,7 @@ const TriviaHome = ({ className }) => {
 
   useEffect(() => {
     if (trivia?.question?.length > 0) {
-      setTime(Date.now() + 5000 * trivia?.question?.length)
+      setTime(Date.now() + 10000 * trivia?.question?.length)
     }
     // eslint-disable-next-line
   }, [trivia])
