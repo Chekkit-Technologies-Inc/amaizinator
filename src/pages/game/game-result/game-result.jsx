@@ -13,7 +13,7 @@ import {ReactComponent as ShareIcon} from '../../../assets/share.svg'
 import useDocumentTitle from '../../../hooks/use-document-title';
 
 import {UserActions, TriviaActions} from '../../../states/actions'
-// import {ResponseActions} from '../../../states/actions'
+import {ResponseActions} from '../../../states/actions'
 
 const GameResult = ({ className }) => {
   const {hash} = useParams()
@@ -28,13 +28,6 @@ const GameResult = ({ className }) => {
   const [game, setGame] = useState()
   const [success, setSuccess] = useState(false)
   useDocumentTitle('Result')
-
-  useEffect(() => {
-    if (game) {
-      console.log('game', game)
-    }
-    // eslint-disable-next-line
-  }, [game])
 
   useEffect(() => {
     if (games && gameId) {
@@ -73,10 +66,6 @@ const GameResult = ({ className }) => {
         setGameId(arr[2])
       }
 
-      // if (arr[3]) {
-      //   console.log('time', arr[3])
-      // }
-
     }
     // eslint-disable-next-line
   }, [hash, CryptoJS, user?.id])
@@ -94,23 +83,37 @@ const GameResult = ({ className }) => {
   useEffect(() => {
     if (points && gameId && userId && user?.id && game && !success && currentHash && Number(user?.id) === Number(userId)) {
 
-      // dispatch(TriviaActions.saveHash(currentHash)).then(res => {
-      //   if (res) {
-      //     // do that
-      //   }
-      // }).catch(err => {
-      //   dispatch(ResponseActions.notify({ title: "", message: err.response?.data?.message || err.message || 'Score already recorded', type: 'error', loading: false }));
-      // })
+      let exists = false
 
-      setCurrentHash(null)
-      dispatch(TriviaActions.submitTrivia({
-        score: Number(points) > game?.points ? game?.points : Number(points),
-        gameId: Number(gameId)
-      })).then(res => {
-        if (res) {
-          setSuccess(true)
-        }
-      })
+      let hashList = JSON.parse(localStorage.getItem('hashList'))
+
+      if (hashList && hashList.length > 0) {
+        exists = hashList.some(d => d === currentHash)
+      } else {
+        hashList = []
+      }
+
+      if (exists) {
+
+        dispatch(ResponseActions.notify({ title: "", message: 'Score already redeemed', type: 'error', loading: false }));
+        history.push('/app/dashboard')
+
+      } else {
+
+        hashList.push(currentHash)
+        localStorage.setItem('hashList', JSON.stringify(hashList));
+        setCurrentHash(null)
+        dispatch(TriviaActions.submitTrivia({
+          score: Number(points) > game?.points ? game?.points : Number(points),
+          gameId: Number(gameId)
+        })).then(res => {
+          if (res) {
+            setSuccess(true)
+          }
+        })
+
+      }
+
     }
     // eslint-disable-next-line
   }, [points, gameId, userId, user?.id, game])

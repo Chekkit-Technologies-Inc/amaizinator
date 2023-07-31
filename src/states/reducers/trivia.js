@@ -13,6 +13,7 @@ const triviaReducer = (trivia = initialState, action) => {
         data = []
         if (payload.length > 0) {
           data = payload.map(d => {
+            d.bg_color = '#D2F0FF'
             d.dataType = 'trivia trivias'
             return d
           })
@@ -28,6 +29,7 @@ const triviaReducer = (trivia = initialState, action) => {
             if (d?.title?.toLowerCase()?.includes('game-')) {
               d.title = d?.title?.split('game-')[1]?.replaceAll('-', ' ')
             }
+            d.bg_color = '#FFF2D9'
             d.isGame = true
             d.dataType = 'game games'
             return d

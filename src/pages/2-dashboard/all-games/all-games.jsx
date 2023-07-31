@@ -62,7 +62,7 @@ const AllGames = ({ className }) => {
             return (
               <React.Fragment key={idx}>
                 {d?.isGame ? (
-                  <Link to={`/app/game-home/${d?.id}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
+                  <Link  to={`/app/game-home/${d?.id}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
                     <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
                       e.target.onerror = null;
                       e.target.src = Bambi;
@@ -73,7 +73,7 @@ const AllGames = ({ className }) => {
                     </div>
                   </Link>
                 ) : (
-                  <Link to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
+                  <Link  to={`/app/trivia-home/${d?.slug}`} key={idx} className='flex flex-col justify-center text-left cursor-pointer p-4 rounded-2xl bg-green-50  no-underline hover:no-underline capitalize text-base space-y-2 flex-shrink-0 -space-y-2'>
                     <img className='h-28 w-28 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={d?.photo} onError={e => {
                       e.target.onerror = null;
                       e.target.src = Bambi;
