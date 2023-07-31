@@ -121,20 +121,20 @@ const Scan = ({ className }) => {
             </FadeIn>
             <div className='font-semibold text-base text-gray-300'>Items</div>
             <div className='space-y-1'>
-              <div className='font-semibold'>Amazing Day</div>
+              <div className='font-semibold'>Amaizing Day</div>
               <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
             </div>
             <div className='space-y-1'>
-              <div className='font-semibold'>Amazing Day</div>
+              <div className='font-semibold'>Amaizing Day</div>
               <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
             </div>
             <div className='space-y-1'>
-              <div className='font-semibold'>Amazing Day</div>
+              <div className='font-semibold'>Amaizing Day</div>
               <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
             </div>
             <div className='w-full h-1 border-b'></div> */}
             <PointCard point={points} />
-            <Button onClick={() => history.push('/app/dashboard')} text='Goto Dashboard' />
+            <Button className={'capitalize'} onClick={() => history.push('/app/dashboard')} text='Go to Dashboard' />
           </FadeIn>
 
         </FadeIn>

@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {shuffle} from 'lodash'
 import Countdown from "react-countdown";
+import CryptoJS from 'crypto-js'
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 import {ReactComponent as PointIcon} from '../../../assets/point.svg'
@@ -39,6 +40,7 @@ const TriviaPlayer = ({ className }) => {
   const {slug} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
   const {triviaList} = useSelector(state => state.trivia)
   const [trivia, setTrivia] = useState()
   const [question, setQuestion] = useState({})
@@ -94,7 +96,7 @@ const TriviaPlayer = ({ className }) => {
 
   useEffect(() => {
     if (trivia?.question?.length > 0) {
-      setTime(Date.now() + 5000 * trivia?.question?.length)
+      setTime(Date.now() + 10000 * trivia?.question?.length)
     }
     // eslint-disable-next-line
   }, [trivia])
@@ -122,7 +124,8 @@ const TriviaPlayer = ({ className }) => {
       surveyId: trivia?.id
     })).then(res => {
       if (res) {
-        history.push(`/app/trivia-result/${Math.round(pointEarned)}`)
+        let encrypted = CryptoJS.AES.encrypt(`${user?.id}&${Math.round(pointEarned)}`, 'chekkit-fmn-secret')?.toString();
+        history.push(`/app/trivia-result/${encrypted.replaceAll('/','CHAFMN')}`)
       }
     })
   }
@@ -192,7 +195,7 @@ const TriviaPlayer = ({ className }) => {
                : (
                 <>
                   <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
-                  <Button onClick={() => history.push('/app/dashboard')} className='-mt-4' text={'Goto Dashboard'} />
+                  <Button onClick={() => history.push('/app/dashboard')} className='-mt-4 capitalize' text={'Go to Dashboard'} />
                 </>
               )}
             </FadeIn>}

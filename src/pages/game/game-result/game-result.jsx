@@ -137,11 +137,11 @@ const GameResult = ({ className }) => {
               <div className='text-gray-800 font-medium'>You just won <b>{Number(points) > game?.points ? game?.points : points}</b> points. Keep playing more games and submitting receipts with Amaizing Day Cereal to rack up more points</div>
             </div>
             <div className='space-y-6'>
-              <Button onClick={() => history.push('/app/leaderboard')} text={'Goto Leaderboard'} />
+              <Button className={'capitalize'} onClick={() => history.push('/app/leaderboard')} text={'Go to Leaderboard'} />
                 <RWebShare
                   data={{
                     text: `${user?.first_name} just won ${Number(points) > game?.points ? game?.points : points} points. Play more games and submit receipts with Amaizing Day Cereal to rack up more points`,
-                    url: window.location.href,
+                    url: window.location.href.split('/app')[0],
                     title: `Congratulations ${user?.first_name}!`,
                   }}
                 >

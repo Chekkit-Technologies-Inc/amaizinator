@@ -79,7 +79,7 @@ const ScanTracker = ({ className }) => {
 
 
       <div className='bg-green_light p-4 rounded-xl text-white text-center'>
-        Scan receipts that include Amaizing Day . Each eligible receipt with Amazing Day cereal earns you points and the more units of Amaizing day recorded, the more points you'll accumulate!
+        Scan receipts that include Amaizing Day . Each eligible receipt with Amaizing Day cereal earns you points and the more units of Amaizing day recorded, the more points you'll accumulate!
       </div>
 
       <InputBox

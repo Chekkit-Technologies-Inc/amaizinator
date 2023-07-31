@@ -61,7 +61,7 @@ Join Captain Amaizing, a smart, fun-loving character who is passionate about hea
           </div>
 
         </div>
-        <Button onClick={() => history.push('/app/prizes')} className={'mt-6 text-xl font-semibold sm:w-80 mx-auto'} text={'Start My Amazing Journey'} />
+        <Button onClick={() => history.push('/app/prizes')} className={'mt-6 text-xl font-semibold sm:w-80 mx-auto'} text={'Start My Amaizing Journey'} />
       </div>
     </div>
   );

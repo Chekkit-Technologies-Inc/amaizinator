@@ -21,7 +21,7 @@ const routes = [
   },
   {
     name: 'TriviaResult',
-    path: '/app/trivia-result/:points',
+    path: '/app/trivia-result/:hash',
     component: TriviaResult,
     current: false,
   }
