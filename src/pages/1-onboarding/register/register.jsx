@@ -30,7 +30,15 @@ const Register = ({ className }) => {
   const [canSubmit, setCanSubmit] = useState(false);
   const [open, setOpen] = useState(false);
   const [accept, onAcceptChange] = useState(false);
+  const [readTerms, setReadTerms] = useState(false);
   useDocumentTitle('Register')
+
+  useEffect(() => {
+    if (readTerms) {
+      setOpen(true)
+    }
+    // eslint-disable-next-line
+  }, [readTerms]);
 
   useEffect(() => {
     if (user?.token) {
@@ -142,7 +150,12 @@ const Register = ({ className }) => {
               }
             })}
             <div className='flex items-center space-x-2'>
-                <input type='checkbox' onChange={e => onAcceptChange(e.target.checked)} checked={accept} />
+                <input type='checkbox' onChange={e => {
+                  onAcceptChange(e.target.checked)
+                  if (e.target.checked) {
+                    setReadTerms(true)
+                  }
+                }} checked={accept} />
                 <div className='flex items-center space-x-2'>
                   <span>Accept </span>
                   <div onClick={() => setOpen(true)} className='text-yellow_dark underline cursor-pointer font-semibold'>
@@ -158,6 +171,7 @@ const Register = ({ className }) => {
       </form>
       {open && <Dialog open={open} setOpen={setOpen} variant={'terms'} callBack={() => {
         onAcceptChange(true)
+        setReadTerms(false)
       }} />}
     </>
   );
