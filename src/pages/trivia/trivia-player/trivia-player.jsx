@@ -49,7 +49,9 @@ const TriviaPlayer = ({ className }) => {
   useDocumentTitle('Trivia')
 
   useEffect(() => {
-    dispatch(TriviaActions.fetchTrivia())
+    if (!triviaList) {
+      dispatch(TriviaActions.fetchTrivia())
+    }
     // eslint-disable-next-line
   }, [])
 
@@ -160,7 +162,7 @@ const TriviaPlayer = ({ className }) => {
 
             {trivia?.question?.length > 0 && (
               <FadeIn className='space-y-4'>
-                {choices && choices.map((d, i) => {
+                {choices && choices.filter(d => d?.text).map((d, i) => {
                   return (
                     <div key={i} onClick={() => onSelect(i)} className={`${d?.selected ? 'bg-green_lightx' : 'border'} rounded-2xl py-3 px-5 flex gap-4 cursor-pointer`}>
                       <div className={`${d?.selected ? 'font-bold' : ''} flex justify-center items-center text-base pr-1`}>

@@ -32,7 +32,9 @@ const TriviaHome = ({ className }) => {
   useDocumentTitle('Trivia')
 
   useEffect(() => {
-    dispatch(TriviaActions.fetchTrivia())
+    if (!triviaList) {
+      dispatch(TriviaActions.fetchTrivia())
+    }
     // eslint-disable-next-line
   }, [])
 
