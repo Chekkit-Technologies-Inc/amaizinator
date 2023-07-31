@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import GameHome from './game-home';
 import GameResult from './game-result';
@@ -26,9 +26,12 @@ const Index = () => {
   const location = useLocation();
   const dispatch = useDispatch()
   const [items, setItems] = useState(routes);
+  const {games} = useSelector(state => state.trivia)
 
   useEffect(() => {
-    dispatch(TriviaActions.fetchGames())
+    if (!games) {
+      dispatch(TriviaActions.fetchGames())
+    }
     // eslint-disable-next-line
   }, [])
 
