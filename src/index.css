@@ -78,6 +78,10 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+.slick-dots li.slick-active button:before {
+  color:White !important;
+}
+
 .bg-field {
   background-image: url('./assets/field.svg');
   height: 100%;
