@@ -120,11 +120,11 @@ const TriviaPlayer = ({ className }) => {
       return p + pointMapper[n]
     }, 0)
     dispatch(TriviaActions.submitTrivia({
-      score: Math.round(pointEarned),
+      score: Math.floor(pointEarned),
       surveyId: trivia?.id
     })).then(res => {
       if (res) {
-        let encrypted = CryptoJS.AES.encrypt(`${user?.id}&${Math.round(pointEarned)}`, 'chekkit-fmn-secret')?.toString();
+        let encrypted = CryptoJS.AES.encrypt(`${user?.id}&${Math.floor(pointEarned)}`, 'chekkit-fmn-secret')?.toString();
         history.push(`/app/trivia-result/${encrypted.replaceAll('/','CHAFMN')}`)
       }
     })
@@ -153,7 +153,7 @@ const TriviaPlayer = ({ className }) => {
           </div>
           <div className='bg-white bg-opacity-25 h-8 p-2 inline-flex justify-center items-center rounded-lg space-x-1'>
             <PointIcon />
-            <div className='font-extrabold text-sm'>{trivia?.trivia_points ? Math.round(trivia?.trivia_points / trivia?.question?.length) : 0}</div>
+            <div className='font-extrabold text-sm'>{trivia?.trivia_points ? Math.floor(trivia?.trivia_points / trivia?.question?.length) : 0}</div>
           </div>
         </div>
         <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-16 justify-between'>
