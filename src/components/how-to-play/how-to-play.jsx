@@ -46,28 +46,28 @@ const HowToPlay = ({ className, setOpen }) => {
               <div className='w-60 h-60'>
                 <Trivia className='w-full h-full object-cover' />
               </div>
-              <h4 className='text-3xl text-center'>Take Trivias</h4>
+              <div className='font-semibold text-3xl text-center'>Take Trivias</div>
               <p className='text-xl text-center'>Take tirvias to accumulate points.</p>
             </FadeIn>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60'>
                 <Games className='w-full h-full object-cover' />
               </div>
-              <h4 className='text-3xl text-center'>Play Games</h4>
+              <h4 className='font-semibold text-3xl text-center'>Play Games</h4>
               <p className='text-xl text-center'>Play games to accumulate points.</p>
             </FadeIn>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60 rounded-2xl overflow-hidden'>
                 <img src={Receipt} alt='' className='w-full h-full object-cover' />
               </div>
-              <h4 className='text-3xl text-center'>Scan Receipts</h4>
+              <h4 className='font-semibold text-3xl text-center'>Scan Receipts</h4>
               <p className='text-xl text-center'>Scan receipts containing Amaizing Day products and date to accumulate points.</p>
             </FadeIn>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60 rounded-2xl overflow-hidden'>
                 <img src={Rewards} alt='' className='w-full h-full object-fit' />
               </div>
-              <h4 className='text-3xl text-center'>Win Rewards</h4>
+              <h4 className='font-semibold text-3xl text-center'>Win Rewards</h4>
               <p className='text-xl text-center'>Rise on the leaderboard to win daily, weekly and overall prizes.</p>
             </FadeIn>
           </Slider>
