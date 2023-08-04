@@ -23,7 +23,7 @@ const AllGames = ({ className }) => {
 
   useEffect(() => {
     if (triviaList && games && (triviaList.length > 0 || games.length > 0)) {
-      setGamesAndTrivias(shuffle([...games.filter(d => !d?.title?.toLowerCase()?.includes('tic')), ...triviaList]))
+      setGamesAndTrivias(shuffle([...games, ...triviaList]))
     }
   }, [triviaList, games])
 

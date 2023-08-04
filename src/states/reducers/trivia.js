@@ -25,7 +25,7 @@ const triviaReducer = (trivia = initialState, action) => {
       if (payload) {
         data2 = []
         if (payload.length > 0) {
-          data2 = payload.map(d => {
+          data2 = payload.filter(d => !d?.title?.toLowerCase()?.includes('tic')).map(d => {
             if (d?.title?.toLowerCase()?.includes('game-')) {
               d.title = d?.title?.split('game-')[1]?.replaceAll('-', ' ')
             }
