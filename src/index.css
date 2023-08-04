@@ -82,6 +82,17 @@ input[type='number'] {
   color:White !important;
 }
 
+.cal-height {
+  height: calc(100% - 200px);
+}
+
+ul.slick-dots {
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 0px !important;
+  left: 0px !important;
+}
+
 .bg-field {
   background-image: url('./assets/field.svg');
   height: 100%;

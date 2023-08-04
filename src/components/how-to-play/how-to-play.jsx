@@ -24,7 +24,7 @@ const HowToPlay = ({ className, setOpen }) => {
   }, [slider])
 
   return (
-    <div style={{zIndex: 50000}} className={`bg-green_dark overflow-auto fixed top-0 right-0 left-0 bottom-0 text-white flex flex-col gap-4 ${className}`}>
+    <div style={{zIndex: 50000}} className={`bg-green_dark overflow-auto fixed top-0 right-0 left-0 bottom-0 text-white flex flex-col gap-4 h-screen ${className}`}>
       <FadeIn className='my-6 font-semibold text-2xl text-center curly'>How To Earn Points</FadeIn>
       <MdClose onClick={() => setOpen(false)} className='fixed right-4 top-4 text-white cursor-pointer' size={20} />
       <div className='fixed right-4 bottom-6 z-30' onClick={() => {
@@ -40,8 +40,8 @@ const HowToPlay = ({ className, setOpen }) => {
         <BsArrowLeftShort className='bg-white  cursor-pointer text-green_dark h-10 w-10 p-2 rounded-full' size={26} />
       </div>}
       <div className='p-6 flex-1 flex flex-col justify-end items-center'>
-        <div className='max-w-md w-full h-full py-6'>
-          <Slider afterChange={i => setIndex(i)} ref={slider} className="h-full flex items-end pb-32" {...settings}>
+        <div className='max-w-md w-full py-6'>
+          <Slider afterChange={i => setIndex(i)} ref={slider} className=" flex items-end pb-32" {...settings}>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60'>
                 <Trivia className='w-full h-full object-cover' />
