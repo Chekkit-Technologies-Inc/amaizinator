@@ -6,7 +6,7 @@ import NinjaOne from '../../../assets/ninja-1.svg'
 import NinjaTwo from '../../../assets/ninja-2.svg'
 import NinjaThree from '../../../assets/ninja-3.svg'
 import NinjaFour from '../../../assets/ninja-4.svg'
-import NinjaFive from '../../../assets/ninja-5.svg'
+// import NinjaFive from '../../../assets/ninja-5.svg'
 import Captain from '../../../assets/captain-amaizing.png'
 import CurlyArrow from '../../../assets/curly-arrow.svg'
 
@@ -31,12 +31,12 @@ const Welcome = ({ className }) => {
 
   return (
     <div className={`${className} flex-1 p-4 flex flex-col justify-end`}>
-      <FadeIn className='grid grid-cols-5 gap-1 relative top-10'>
+      <FadeIn className='grid grid-cols-4 gap-1 relative top-10'>
         <img className='relative top-6 w-32' src={NinjaOne} alt="" />
         <img className='relative w-32' src={NinjaTwo} alt="" />
         <img className='relative w-32' src={NinjaThree} alt="" />
-        <img className='relative w-32' src={NinjaFour} alt="" />
-        <img className='relative top-2 w-32' src={NinjaFive} alt="" />
+        <img className='relative top-6 w-32' src={NinjaFour} alt="" />
+        {/* <img className='relative top-2 w-32' src={NinjaFive} alt="" /> */}
       </FadeIn>
       <div className='bg-yellow-100 rounded-3xl border-b-4 border-yellow-300 p-4 pt-0 text-center flex flex-col'>
         <FadeIn className='mt-12 curly font-semibold text-gray-800'>

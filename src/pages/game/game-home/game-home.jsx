@@ -74,7 +74,7 @@ const GameHome = ({ className }) => {
           <FadeIn>
             <Button onClick={() => {
               if (game?.url) {
-                window.open(game?.url + `/?${user?.id}&${game?.id}`, '_self')
+                window.open(game?.url + game?.insta ? '' : `/?${user?.id}&${game?.id}`, '_self')
               }
             }} className={'mb-8'} text='Play Game' />
           </FadeIn>

@@ -5,7 +5,7 @@ import {BsArrowRightShort, BsArrowLeftShort} from 'react-icons/bs'
 import Slider from "react-slick";
 
 import {ReactComponent as Trivia} from '../../assets/lion-king.svg'
-import {ReactComponent as Games} from '../../assets/astro-kids.svg'
+import Games from '../../assets/games.png'
 import Receipt from '../../assets/receipt2.svg'
 import Rewards from '../../assets/rewards.svg'
 
@@ -51,7 +51,7 @@ const HowToPlay = ({ className, setOpen }) => {
             </FadeIn>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60'>
-                <Games className='w-full h-full object-cover' />
+                <img src={Games} alt='' className='w-full h-full object-cover' />
               </div>
               <h4 className='font-bold text-3xl text-center'>Play Games</h4>
               <p className='text-xl text-center'>Play games to accumulate points.</p>

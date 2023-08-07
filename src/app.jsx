@@ -50,6 +50,13 @@ function App() {
   }, [location.pathname])
 
   useEffect(() => {
+    // let x = '1CD3BcQSZULbvDeZcGJTWsyEI1gg0BYZ3LCRbU6huEQ='
+    // let encryptedx = x.replaceAll('CHAFMN', '/')
+    // console.log('encryptedx', encryptedx)
+    // let decryptedx = CryptoJS.AES.decrypt(encryptedx, 'chekkit-fmn-secret');
+    // console.log('decryptedx', decryptedx)
+    // let stringx = decryptedx.toString(CryptoJS.enc.Utf8)
+    // console.log('stringx', stringx)
     if (CryptoJS && user?.id) {
       let hash = JSON.parse(localStorage.getItem('hash'));
       if (hash) {

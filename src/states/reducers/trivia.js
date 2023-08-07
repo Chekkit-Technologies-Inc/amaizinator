@@ -29,6 +29,9 @@ const triviaReducer = (trivia = initialState, action) => {
             if (d?.title?.toLowerCase()?.includes('game-')) {
               d.title = d?.title?.split('game-')[1]?.replaceAll('-', ' ')
             }
+            if (d?.title?.toLowerCase()?.includes('speed chop')) {
+              d.insta = true
+            }
             d.bg_color = '#FFF2D9'
             d.isGame = true
             d.dataType = 'game games'
