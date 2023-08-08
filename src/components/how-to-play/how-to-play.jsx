@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import {MdClose} from 'react-icons/md'
 import {BsArrowRightShort, BsArrowLeftShort} from 'react-icons/bs'
@@ -18,10 +18,6 @@ const settings = {
 const HowToPlay = ({ className, setOpen }) => {
   const slider = useRef();
   const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    console.log('slider', slider)
-  }, [slider])
 
   return (
     <div style={{zIndex: 50000}} className={`bg-green_dark overflow-auto fixed top-0 right-0 left-0 bottom-0 text-white flex flex-col gap-4 h-screen ${className}`}>
@@ -61,7 +57,7 @@ const HowToPlay = ({ className, setOpen }) => {
                 <img src={Receipt} alt='' className='w-full h-full object-cover' />
               </div>
               <h4 className='font-bold text-3xl text-center'>Scan Receipts</h4>
-              <p className='text-xl text-center'>Scan receipts containing Amaizing Day products and date to accumulate points.</p>
+              <p className='text-xl text-center'>Scan receipts containing Golden Penny Amaizing Day products and date to accumulate points.</p>
             </FadeIn>
             <FadeIn className="h-99 flex-1 flex flex-col justify-center items-center gap-6">
               <div className='w-60 h-60 rounded-2xl overflow-hidden'>

@@ -47,7 +47,7 @@ const Scan = ({ className }) => {
             <div className='font-semibold text-lg cursor-pointer' onClick={() => history.goBack()}>
               &larr;
             </div>
-            <div className="text-center text-green_dark">Please scan receipts that contains <b>Amaizing day</b> products from flour mills and date</div>
+            <div className="text-center text-green_dark">Please scan receipts that contains <b>Golden Penny Amaizing</b> day products from flour mills and date</div>
           </FadeIn>
 
 
@@ -101,38 +101,6 @@ const Scan = ({ className }) => {
                 <div>Scan New</div>
               </div>
             </div>
-            {/* <div>
-              <div style={{fontSize: '12px'}} className='text-gray-400'>Business Name</div>
-              <div className='font-semibold'>Shoprite</div>
-            </div>
-            <FadeIn className='grid grid-cols-3 gap-4'>
-              <div>
-                <div style={{fontSize: '12px'}} className='text-gray-400 line-clamp-1'>Invoice Number</div>
-                <div className='font-semibold'>#24434</div>
-              </div>
-              <div>
-                <div style={{fontSize: '12px'}} className='text-gray-400 line-clamp-1'>Scan Date</div>
-                <div className='font-semibold'>02/02/23</div>
-              </div>
-              <div>
-                <div style={{fontSize: '12px'}} className='text-gray-400 line-clamp-1'>Amount</div>
-                <div className='font-semibold'>₦5,000.00</div>
-              </div>
-            </FadeIn>
-            <div className='font-semibold text-base text-gray-300'>Items</div>
-            <div className='space-y-1'>
-              <div className='font-semibold'>Amaizing Day</div>
-              <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
-            </div>
-            <div className='space-y-1'>
-              <div className='font-semibold'>Amaizing Day</div>
-              <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
-            </div>
-            <div className='space-y-1'>
-              <div className='font-semibold'>Amaizing Day</div>
-              <div className='text-gray-400 line-clamp-1 font-medium'>₦500</div>
-            </div>
-            <div className='w-full h-1 border-b'></div> */}
             <PointCard point={points} />
             <Button className={'capitalize'} onClick={() => history.push('/app/dashboard')} text='Go to Dashboard' />
           </FadeIn>
