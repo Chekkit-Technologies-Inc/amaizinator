@@ -75,7 +75,7 @@ const GameHome = ({ className }) => {
             <Button onClick={() => {
               if (game?.url) {
                 let addition = game?.insta ? `` : `/?${user?.id}&${game?.id}`
-                window.open(game?.url + addition, '_self')
+                window.open(game?.url.replaceAll('app/', 'app') + addition, '_self')
               }
             }} className={'mb-8'} text='Play Game' />
           </FadeIn>
