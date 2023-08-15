@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,10 +10,10 @@ import Button from '../../../components/button'
 import Bambi from '../../../assets/bambi.svg'
 
 const GameHome = ({ className }) => {
-  const {id} = useParams()
+  const { id } = useParams()
   const history = useHistory()
   const user = useSelector(state => state.user)
-  const {games} = useSelector(state => state.trivia)
+  const { games } = useSelector(state => state.trivia)
   const [game, setGame] = useState()
   useDocumentTitle('Game')
 
@@ -39,14 +39,14 @@ const GameHome = ({ className }) => {
         &larr;
       </div>
 
-      <div  className='flex flex-col flex-1 h-full'>
+      <div className='flex flex-col flex-1 h-full'>
         <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
           <img className='h-24 w-24 mx-auto object-cover object-top  rounded-t-2xl rounded-b-md' src={game?.photo} alt="" onError={e => {
             e.target.onerror = null;
             e.target.src = Bambi;
           }} />
         </div>
-        <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
+        <div style={{ minHeight: '500px' }} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
 
           <FadeIn className='space-y-6'>
 
@@ -82,7 +82,6 @@ const GameHome = ({ className }) => {
 
         </div>
       </div>
-
     </div>
   );
 };
