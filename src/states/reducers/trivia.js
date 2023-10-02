@@ -19,13 +19,13 @@ const triviaReducer = (trivia = initialState, action) => {
           })
         }
       }
-      return {...trivia, triviaList: data};
+      return { ...trivia, triviaList: data };
     case FETCH_GAMES:
       let data2 = ''
       if (payload) {
         data2 = []
         if (payload.length > 0) {
-          data2 = payload.filter(d => !d?.title?.toLowerCase()?.includes('tic')).map(d => {
+          data2 = payload.filter(d => !d?.title?.toLowerCase()?.includes('tic tac')).map(d => {
             if (d?.title?.toLowerCase()?.includes('game-')) {
               d.title = d?.title?.split('game-')[1]?.replaceAll('-', ' ')
             }
@@ -37,13 +37,14 @@ const triviaReducer = (trivia = initialState, action) => {
             d.dataType = 'game games'
             return d
           })
+
         }
       }
-      return {...trivia, games: data2};
+      return { ...trivia, games: data2 };
     case FETCH_LEADERBOARD:
-      return {...trivia, leaderboard: payload};
+      return { ...trivia, leaderboard: payload };
     case FETCH_WINNINGS:
-      return {...trivia, winnings: payload};
+      return { ...trivia, winnings: payload };
     default:
       return trivia;
   }
