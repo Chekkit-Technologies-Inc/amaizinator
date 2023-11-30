@@ -225,7 +225,9 @@ const Dashboard = ({ className }) => {
             <Link to='/app/all-games' className='font-medium text-sm text-yellow_dark hover:text-yellow_dark no-underline hover:no-underline capitalize'>View All</Link>
           </div>
           <FadeIn className='grid grid-cols-2 gap-4'>
-            {gamesAndTrivias ? gamesAndTrivias.length > 0 ? gamesAndTrivias.map((d, idx) => {
+            {gamesAndTrivias ? gamesAndTrivias.length > 0 ? gamesAndTrivias.sort((a, b) => {
+              return new Date(a?.availableDate) - new Date(b?.availableDate);
+            }).map((d, idx) => {
               return (
                 <ItemGameTrivia key={idx} d={d} />
               )
