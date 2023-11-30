@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {shuffle} from 'lodash'
+import { shuffle } from 'lodash'
 import Countdown from "react-countdown";
 import CryptoJS from 'crypto-js'
 
 import useDocumentTitle from '../../../hooks/use-document-title';
-import {ReactComponent as PointIcon} from '../../../assets/point.svg'
+import { ReactComponent as PointIcon } from '../../../assets/point.svg'
 
 import Button from '../../../components/button'
 
-import {TriviaActions} from '../../../states/actions'
+import { TriviaActions } from '../../../states/actions'
 
-const abc =['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 let answerMapper = {}
 let pointMapper = {}
@@ -37,11 +37,11 @@ const renderer = ({ minutes, seconds, completed }) => {
 };
 
 const TriviaPlayer = ({ className }) => {
-  const {slug} = useParams()
+  const { slug } = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const {triviaList} = useSelector(state => state.trivia)
+  const { triviaList } = useSelector(state => state.trivia)
   const [trivia, setTrivia] = useState()
   const [question, setQuestion] = useState({})
   const [choices, setChoices] = useState([])
@@ -67,11 +67,11 @@ const TriviaPlayer = ({ className }) => {
       return d
     }))
     let selected = choices.find((d, i) => i === idx)
-    answerMapper = {...answerMapper, [index]: selected?.text}
+    answerMapper = { ...answerMapper, [index]: selected?.text }
     if (selected?.text?.toLowerCase()?.includes(question?.answer?.toLowerCase())) {
-      pointMapper = {...pointMapper, [index]: trivia?.trivia_points / trivia?.question?.length}
+      pointMapper = { ...pointMapper, [index]: trivia?.trivia_points / trivia?.question?.length }
     } else {
-      pointMapper = {...pointMapper, [index]: 0}
+      pointMapper = { ...pointMapper, [index]: 0 }
     }
   }
 
@@ -81,7 +81,7 @@ const TriviaPlayer = ({ className }) => {
       let t = triviaList.find(d => d.slug == slug);
       if (t) {
         let qs = shuffle(t?.question)
-        setTrivia({...t, question: qs})
+        setTrivia({ ...t, question: qs })
       };
     }
     // eslint-disable-next-line
@@ -125,16 +125,18 @@ const TriviaPlayer = ({ className }) => {
     })).then(res => {
       if (res) {
         let encrypted = CryptoJS.AES.encrypt(`${user?.id}&${Math.floor(pointEarned)}`, 'chekkit-fmn-secret')?.toString();
-        history.push(`/app/trivia-result/${encrypted.replaceAll('/','CHAFMN')}`)
+        history.push(`/app/trivia-result/${encrypted.replaceAll('/', 'CHAFMN')}`)
       }
     })
   }
 
   const onSubmit = () => {
-    if (index + 1 === trivia?.question?.length) {
-      registerScore()
-    } else {
-      setIndex(i => i + 1)
+    if (trivia?.isAvailable) {
+      if (index + 1 === trivia?.question?.length) {
+        registerScore()
+      } else {
+        setIndex(i => i + 1)
+      }
     }
   }
 
@@ -146,17 +148,17 @@ const TriviaPlayer = ({ className }) => {
 
       <div className='font-bold text-lg mt-4'>{trivia?.title}</div>
 
-      <div  className='flex flex-col flex-1 h-full'>
+      <div className='flex flex-col flex-1 h-full'>
         <div className='w-full h-24 flex justify-between items-center space-x-4 mx-auto relative top-6 text-2xl font-bold'>
           <div>
-            {time && <Countdown onComplete={registerScore} date={time} renderer={renderer} />}
+            {time && trivia?.isAvailable && <Countdown onComplete={registerScore} date={time} renderer={renderer} />}
           </div>
           <div className='bg-white bg-opacity-25 h-8 p-2 inline-flex justify-center items-center rounded-lg space-x-1'>
             <PointIcon />
             <div className='font-extrabold text-sm'>{trivia?.trivia_points ? Math.floor(trivia?.trivia_points / trivia?.question?.length) : 0}</div>
           </div>
         </div>
-        <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-16 justify-between'>
+        <div style={{ minHeight: '500px' }} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-16 justify-between'>
           <FadeIn className='space-y-6'>
             {trivia && <div className='space-y-2'>
               <div className='font-bold text-xs text-gray-400'>Question {index + 1} of {trivia?.question?.length}</div>
@@ -167,7 +169,7 @@ const TriviaPlayer = ({ className }) => {
               <FadeIn className='space-y-4'>
                 {choices && choices.filter(d => d?.text).map((d, i) => {
                   return (
-                    <div key={i} onClick={() => onSelect(i)} className={`${d?.selected ? 'bg-green_lightx' : 'border'} rounded-2xl py-3 px-5 flex gap-4 cursor-pointer`}>
+                    <div key={i} onClick={() => onSelect(i)} className={`${d?.selected ? 'bg-green_lightx' : 'border'} rounded-2xl py-3 px-5 flex gap-4 cursor-pointer ${trivia?.isAvailable ? '' : 'pointer-events-none opacity-50'}`}>
                       <div className={`${d?.selected ? 'font-bold' : ''} flex justify-center items-center text-base pr-1`}>
                         {abc[i]}
                       </div>
@@ -184,22 +186,22 @@ const TriviaPlayer = ({ className }) => {
             )}
 
           </FadeIn>
-          <div>
+          {trivia?.isAvailable && <div>
             {trivia && <FadeIn>
-              {!trivia?.isAlreadyTaken  ? (
+              {!trivia?.isAlreadyTaken ? (
                 <div className='space-y-4'>
                   <Button className={answerMapper[index] ? '' : 'pointer-events-none opacity-50'} onClick={onSubmit} text={index + 1 === trivia?.question?.length ? `Submit` : `Next Question`} />
                   {index > 0 && <div onClick={() => setIndex(i => i - 1)} className='text-center p-4 rounded-2xl text-base font-semibold cursor-pointer text-green_dark bg-gray-200'>Previous Question</div>}
                 </div>
               )
-               : (
-                <>
-                  <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
-                  <Button onClick={() => history.push('/app/dashboard')} className='-mt-4 capitalize' text={'Go to Dashboard'} />
-                </>
-              )}
+                : (
+                  <>
+                    <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
+                    <Button onClick={() => history.push('/app/dashboard')} className='-mt-4 capitalize' text={'Go to Dashboard'} />
+                  </>
+                )}
             </FadeIn>}
-          </div>
+          </div>}
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 import { FETCH_TRIVIA, FETCH_GAMES, FETCH_LEADERBOARD, FETCH_WINNINGS } from '../type';
-// import {games} from '../../util'
 
 const initialState = {};
+
+const dates = ['2023-11-25', '2023-12-29', '2023-12-02', '2023-12-10', '2023-12-16', '2023-12-26']
 
 const triviaReducer = (trivia = initialState, action) => {
   const { type, payload } = action;
@@ -15,6 +16,8 @@ const triviaReducer = (trivia = initialState, action) => {
           data = payload.map(d => {
             d.bg_color = '#D2F0FF'
             d.dataType = 'trivia trivias'
+            d.availableDate = dates[Math.floor(Math.random() * (4 - 0 + 1) + 0)]
+            d.isAvailable = Date.now() > new Date(d?.availableDate).getTime()
             return d
           })
         }
@@ -35,6 +38,8 @@ const triviaReducer = (trivia = initialState, action) => {
             d.bg_color = '#FFF2D9'
             d.isGame = true
             d.dataType = 'game games'
+            d.availableDate = dates[Math.floor(Math.random() * (4 - 0 + 1) + 0)]
+            d.isAvailable = Date.now() > new Date(d?.availableDate).getTime()
             return d
           })
 

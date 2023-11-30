@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Countdown from "react-countdown";
 
 import ChatIcon from '../../../assets/chat.svg'
-import {ReactComponent as PointIcon} from '../../../assets/point.svg'
+import { ReactComponent as PointIcon } from '../../../assets/point.svg'
 import Bambi from '../../../assets/bambi.svg'
 
 import useDocumentTitle from '../../../hooks/use-document-title';
 
-import {TriviaActions} from '../../../states/actions'
+import { TriviaActions } from '../../../states/actions'
 
 import Button from '../../../components/button'
 
@@ -23,10 +23,10 @@ const renderer = ({ minutes, seconds }) => {
 };
 
 const TriviaHome = ({ className }) => {
-  const {slug} = useParams()
+  const { slug } = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
-  const {triviaList} = useSelector(state => state.trivia)
+  const { triviaList } = useSelector(state => state.trivia)
   const [trivia, setTrivia] = useState()
   const [time, setTime] = useState()
   useDocumentTitle('Trivia')
@@ -60,7 +60,7 @@ const TriviaHome = ({ className }) => {
         &larr;
       </div>
 
-      <div  className='flex flex-col flex-1 h-full'>
+      <div className='flex flex-col flex-1 h-full'>
         {/* <div className='w-24 h-24 flex justify-center items-center mx-auto relative top-8 text-2xl font-bold'>
           <BoxQuestion />
 
@@ -71,7 +71,7 @@ const TriviaHome = ({ className }) => {
             e.target.src = Bambi;
           }} />
         </div>
-        <div style={{minHeight:'500px'}} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
+        <div style={{ minHeight: '500px' }} className='bg-white flex-1 rounded-2xl text-gray-800 p-6 z-20 flex flex-col space-y-4 justify-between'>
           <FadeIn className='space-y-6'>
             <FadeIn className='flex items-start space-x-4 justify-between'>
               <div>
@@ -115,14 +115,14 @@ const TriviaHome = ({ className }) => {
               <div className='text-xs'>{trivia?.content}</div>
             </div>
           </FadeIn>
-          <FadeIn>
-            {!trivia?.isAlreadyTaken  ?<Button onClick={() => history.push(`/app/trivia-player/${slug}`)} className={'mb-8'} text='Play Trivia' /> : (
+          {trivia?.isAvailable && <FadeIn>
+            {!trivia?.isAlreadyTaken ? <Button onClick={() => history.push(`/app/trivia-player/${slug}`)} className={'mb-8'} text='Play Trivia' /> : (
               <>
                 <div className={'mb-8 text-center text-red-500 bg-red-50 p-4 font-semibold rounded-lg'}>Already played trivia</div>
                 <Button className={'capitalize -mt-4'} onClick={() => history.push('/app/dashboard')} text={'Go to Dashboard'} />
               </>
             )}
-          </FadeIn>
+          </FadeIn>}
         </div>
       </div>
 
